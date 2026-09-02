@@ -1,0 +1,1338 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Devanshya</title>
+<link rel="icon" type="image/png" href="images/logo_icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Mukta:wght@300;400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#FBF6EE; --bg-2:#F4EADA; --bg-3:#F7EFE2; --surface:#FFFFFF; --niche:#FBF4E8;
+  --ink:#2C2016; --ink-soft:#6E6153; --ink-faint:#A2907C;
+  --line:#EBDFCE; --line-soft:#F2EADC;
+  --saffron:#DC6C18; --saffron-deep:#B4550E; --maroon:#8C2B22; --maroon-deep:#6E1E17; --gold:#B4842E;
+  --shadow:0 20px 46px -26px rgba(84,42,20,.36); --shadow-sm:0 10px 24px -14px rgba(84,42,20,.30);
+  --shadow-lg:0 40px 80px -30px rgba(60,26,12,.5);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Mukta",system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{font-family:"Fraunces","Marcellus",Georgia,serif;font-weight:600;text-wrap:balance;letter-spacing:-.01em;color:var(--ink)}
+.serif{font-family:"Marcellus",serif}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font-family:inherit}
+.wrap{width:min(1160px,92vw);margin-inline:auto}
+.eyebrow{font-family:"Marcellus",serif;text-transform:uppercase;letter-spacing:.28em;font-size:.72rem;color:var(--saffron-deep)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55em;font-weight:600;font-size:.98rem;padding:.82em 1.5em;border-radius:999px;cursor:pointer;border:1px solid transparent;transition:transform .2s,box-shadow .2s,background .2s,color .2s;line-height:1}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible{outline:2px solid var(--saffron);outline-offset:3px}
+.btn-primary{background:linear-gradient(180deg,var(--saffron),var(--saffron-deep));color:#fff;box-shadow:var(--shadow-sm)}
+.btn-maroon{background:linear-gradient(180deg,#9c3128,var(--maroon-deep));color:#fff;box-shadow:var(--shadow-sm)}
+.btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--saffron);color:var(--saffron-deep)}
+.btn-brass{background:transparent;border-color:var(--gold);color:var(--gold)}
+.btn-brass:hover{background:var(--gold);color:#fff}
+.btn-sm{padding:.6em 1.1em;font-size:.9rem}
+
+/* header */
+header{position:sticky;top:0;z-index:60;background:rgba(251,246,238,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1.4rem;padding:.8rem 0}
+.brand{display:flex;align-items:center;gap:.7rem}
+.brand .mark{width:38px;height:38px;flex:none}
+.brand .name{display:block;font-family:"Marcellus",serif;font-size:1.28rem;letter-spacing:.05em;line-height:1;color:var(--ink)}
+.brand .sub{display:block;font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-faint);margin-top:.3em}
+.nav-links{display:flex;gap:1.3rem;align-items:center}
+.nav-links a{font-size:.94rem;font-weight:500;color:var(--ink-soft);position:relative;padding:.2em 0}
+.nav-links a:hover{color:var(--saffron-deep)}
+.nav-links a.active{color:var(--saffron-deep)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-3px;width:0;height:2px;background:var(--saffron);transition:width .25s;border-radius:2px}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:.6rem}
+.menu-btn{display:none;width:42px;height:42px;border-radius:11px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;place-items:center}
+.menu-btn svg{width:22px;height:22px}
+@media(max-width:920px){
+  .menu-btn{display:inline-grid}
+  .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;
+    background:var(--surface);border-bottom:1px solid var(--line);box-shadow:var(--shadow);
+    padding:.4rem 6vw 1rem;transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:59}
+  header.nav-open .nav-links{transform:none;opacity:1;pointer-events:auto}
+  .nav-links a{padding:.85rem .1rem;border-bottom:1px solid var(--line-soft);font-size:1.05rem}
+  .nav-links a::after{display:none}
+}
+@media(max-width:540px){
+  .brand .sub{display:none}
+  .nav-cta .btn-maroon{white-space:nowrap;padding:.6em 1em}
+  .brand .name{font-size:1.15rem}
+}
+
+/* generic section */
+.page[hidden]{display:none}
+section{padding:clamp(3rem,6vw,5rem) 0}
+.section-head{text-align:center;max-width:62ch;margin:0 auto clamp(2rem,4vw,3rem)}
+.section-head h2{font-size:clamp(1.8rem,3.6vw,2.7rem);line-height:1.12;margin:.5rem 0 .5rem}
+.section-head p{color:var(--ink-soft);font-size:1.05rem;margin:0}
+.center{text-align:center}
+
+/* hero — full-bleed background video */
+.hero{position:relative;overflow:hidden;padding:0;background:#1b0e07;border-bottom:1px solid var(--line-soft)}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img,.hero-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-bg video{z-index:1}
+@media(prefers-reduced-motion:reduce){.hero-bg video{display:none}}
+.hero-scrim{position:absolute;inset:0;z-index:2;pointer-events:none;background:
+  linear-gradient(180deg,rgba(24,11,6,.60) 0%,rgba(24,11,6,.40) 38%,rgba(24,11,6,.44) 60%,rgba(24,11,6,.78) 100%),
+  radial-gradient(120% 80% at 50% 40%,rgba(24,11,6,.10) 30%,rgba(24,11,6,.55) 100%)}
+.hero-inner{position:relative;z-index:3;text-align:center;padding:clamp(4.5rem,12vw,8.5rem) 0}
+.hero-inner .eyebrow{color:#F1C46A;margin-bottom:.8rem}
+.hero-inner h1{color:#fff;font-size:clamp(2.5rem,6vw,4.6rem);line-height:1.04;margin:0 auto 1.1rem;max-width:16ch;text-shadow:0 3px 26px rgba(0,0,0,.5)}
+.hero-inner h1 em{font-style:italic;color:#F6A24B}
+.hero-inner p{color:rgba(255,248,240,.94);font-size:clamp(1.05rem,1.6vw,1.24rem);max-width:56ch;margin:0 auto 1.9rem;text-shadow:0 2px 16px rgba(0,0,0,.5)}
+.hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center}
+.hero .btn-ghost{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.55);color:#fff;backdrop-filter:blur(2px)}
+.hero .btn-ghost:hover{background:rgba(255,255,255,.2);border-color:#fff;color:#fff}
+.hero-chip{display:inline-flex;align-items:center;gap:.55em;margin-top:1.9rem;padding:.55em 1.15em;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(24,11,6,.35);backdrop-filter:blur(3px);color:rgba(255,248,240,.94);font-size:.86rem;font-weight:600}
+.hero-chip svg{width:18px;height:18px;color:#F1C46A}
+
+/* trust row */
+.trust{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:var(--bg-3)}
+.trust ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem 2rem;margin:0;padding:1rem 0}
+.trust li{display:flex;align-items:center;gap:.5em;font-size:.9rem;font-weight:500;color:var(--ink-soft)}
+.trust li svg{width:17px;height:17px;color:var(--gold);flex:none}
+
+/* praying-for */
+.pray-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.9rem}
+@media(max-width:900px){.pray-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:520px){.pray-grid{grid-template-columns:repeat(2,1fr)}}
+.pray{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.1rem .8rem;text-align:center;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.pray:hover{transform:translateY(-3px);border-color:var(--saffron);box-shadow:var(--shadow-sm)}
+.pray .pico{width:34px;height:34px;color:var(--saffron-deep)}
+.pray h3{font-family:"Mukta";font-weight:600;font-size:.92rem;margin:0;letter-spacing:-.01em;color:var(--ink)}
+
+/* image cards (temples & pujas) */
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media(max-width:900px){.card-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.card-grid{grid-template-columns:1fr}}
+.ecard{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .25s,box-shadow .25s;cursor:pointer;text-align:left;color:inherit}
+.ecard:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.ecard:focus-visible{outline:2px solid var(--saffron);outline-offset:3px}
+.ecard .ph{position:relative;aspect-ratio:16/10.4;overflow:hidden}
+.ecard .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.ecard:hover .ph img{transform:scale(1.05)}
+.ecard .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(30,12,6,.5))}
+.ecard .badge{position:absolute;top:.8rem;left:.8rem;z-index:2;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:#fff;background:rgba(140,43,34,.9);padding:.32em .7em;border-radius:999px;backdrop-filter:blur(2px)}
+.ecard .deity{position:absolute;left:.9rem;bottom:.7rem;z-index:2;color:#fff;font-size:.82rem;font-weight:600;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.ecard .body{padding:1.15rem 1.25rem 1.3rem;display:flex;flex-direction:column;gap:.35rem;flex:1}
+.ecard h3{font-size:1.24rem;margin:0;line-height:1.15}
+.ecard .loc{font-size:.85rem;color:var(--ink-faint)}
+.ecard .desc{font-size:.92rem;color:var(--ink-soft);margin:.3rem 0 .9rem;flex:1}
+.ecard .foot{display:flex;align-items:center;justify-content:space-between;gap:.6rem;margin-top:auto}
+.ecard .go{font-size:.88rem;font-weight:600;color:var(--saffron-deep);display:inline-flex;align-items:center;gap:.3em}
+.ecard .price{font-family:"Marcellus",serif;font-size:1.02rem;color:var(--ink)}
+.ecard .price small{display:block;font-family:"Mukta";font-size:.72rem;color:var(--ink-faint)}
+
+/* how3 */
+.how3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+@media(max-width:820px){.how3{grid-template-columns:1fr}}
+.how3 .c{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.6rem 1.5rem}
+.how3 .c .ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:1rem;background:#F6E7D3;color:var(--saffron-deep)}
+.how3 .c .ic svg{width:24px;height:24px}
+.how3 .c h3{font-size:1.2rem;margin:0 0 .4rem}
+.how3 .c p{font-size:.94rem;color:var(--ink-soft);margin:0}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;counter-reset:s}
+@media(max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.5rem 1.2rem;text-align:center}
+.step .num{font-family:"Marcellus",serif;width:42px;height:42px;margin:0 auto .8rem;display:grid;place-items:center;border-radius:50%;color:var(--maroon);border:1px solid var(--gold);background:var(--niche)}
+.step h3{font-size:1rem;margin:0 0 .3rem}
+.step p{font-size:.86rem;color:var(--ink-soft);margin:0}
+
+/* feature two-up */
+.twoup{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:820px){.twoup{grid-template-columns:1fr}}
+.feature{position:relative;border-radius:20px;overflow:hidden;min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;box-shadow:var(--shadow-sm)}
+.feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.feature .sc{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(30,12,6,.15),rgba(30,12,6,.82))}
+.feature .fc{position:relative;z-index:2;padding:clamp(1.6rem,3vw,2.4rem)}
+.feature .eyebrow{color:#F0C98A;margin-bottom:.5rem}
+.feature h3{color:#fff;font-size:clamp(1.4rem,2.4vw,1.9rem);margin:0 0 .5rem}
+.feature p{color:rgba(255,255,255,.9);font-size:1rem;margin:0 0 1.2rem;max-width:42ch}
+.feature .play{position:absolute;top:1.4rem;right:1.4rem;z-index:2;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.5);backdrop-filter:blur(3px)}
+.feature .play svg{width:20px;height:20px;margin-left:3px;color:#fff}
+
+/* creed */
+.creed{max-width:60ch;margin:0 auto;text-align:center}
+.creed h2{font-size:clamp(1.7rem,3.4vw,2.5rem);margin:.5rem 0 1rem}
+.creed h2 em{font-style:italic;color:var(--maroon)}
+.creed p{color:var(--ink-soft);font-size:1.08rem}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem;text-align:left}
+@media(max-width:640px){.quotes{grid-template-columns:1fr}}
+.quotes blockquote{margin:0;padding:1.2rem 1.35rem;border:1px solid var(--line);border-radius:14px;background:var(--surface);font-size:.96rem;color:var(--ink-soft)}
+.quotes b{display:block;font-family:"Marcellus",serif;color:var(--ink);font-size:1.02rem;margin-bottom:.35rem}
+
+/* page hero */
+.page-hero{text-align:center;padding:clamp(2.6rem,6vw,4.2rem) 0 clamp(2rem,4vw,3rem);background:linear-gradient(180deg,var(--bg-3),var(--bg));border-bottom:1px solid var(--line-soft)}
+.page-hero h1{font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.08;margin:.5rem auto .6rem;max-width:20ch}
+.page-hero p{color:var(--ink-soft);font-size:clamp(1rem,1.5vw,1.15rem);max-width:60ch;margin:0 auto}
+.page-hero.has-vid{position:relative;overflow:hidden;isolation:isolate;border-bottom:none;color:#fff;min-height:min(58vh,440px);display:flex;align-items:center;justify-content:center;background:#0e0602}
+.page-hero.has-vid .ph-bg{position:absolute;inset:0;z-index:-2}
+.page-hero.has-vid .ph-bg img,.page-hero.has-vid .ph-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.page-hero.has-vid .ph-bg video{z-index:1}
+@media(prefers-reduced-motion:reduce){.page-hero.has-vid .ph-bg video{display:none}}
+.page-hero.has-vid .ph-scrim{position:absolute;inset:0;z-index:-1;background:radial-gradient(92% 92% at 50% 50%,rgba(10,4,1,.42),rgba(10,4,1,.12) 66%,rgba(10,4,1,0)),linear-gradient(180deg,rgba(12,5,2,.52) 0%,rgba(12,5,2,.32) 45%,rgba(10,4,1,.64) 100%)}
+.page-hero.has-vid .eyebrow{color:#F6D9A6}
+.page-hero.has-vid h1{color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.72),0 3px 22px rgba(0,0,0,.5)}
+.page-hero.has-vid p{color:rgba(255,255,255,.92);text-shadow:0 1px 10px rgba(0,0,0,.45)}
+
+/* CTA band */
+.ctaband{background:linear-gradient(150deg,#9c3128,var(--maroon-deep));color:#fff;text-align:center;border-radius:0}
+.ctaband h2{color:#fff;font-size:clamp(1.9rem,4vw,2.8rem);margin:.4rem 0 .7rem}
+.ctaband p{color:#F3D9C4;font-size:1.08rem;max-width:52ch;margin:0 auto 1.6rem}
+.ctaband .eyebrow{color:#F0C98A}
+
+/* temple detail */
+.detail-hero{position:relative;color:#fff;overflow:hidden}
+.detail-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.detail-hero .sc{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(28,12,6,.45),rgba(28,12,6,.8))}
+.detail-hero .wrap{position:relative;z-index:2;padding:clamp(2.6rem,6vw,4.4rem) 0 clamp(2.2rem,4vw,3rem)}
+.detail-hero .crumb{display:inline-flex;align-items:center;gap:.4em;font-size:.86rem;font-weight:600;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);padding:.4em .9em;border-radius:999px;backdrop-filter:blur(3px);margin-bottom:1rem}
+.detail-hero .crumb:hover{border-color:var(--saffron)}
+.detail-hero .badge{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:#F0C98A;margin-bottom:.5rem}
+.detail-hero h1{color:#fff;font-size:clamp(2.1rem,5vw,3.4rem);margin:0 0 .5rem;line-height:1.06;text-shadow:0 3px 20px rgba(0,0,0,.4)}
+.detail-hero .meta{color:rgba(255,255,255,.92);font-size:1.05rem;margin-bottom:1.4rem}
+.detail-hero .cta{display:flex;gap:.7rem;flex-wrap:wrap}
+.detail-body{padding:clamp(2.4rem,5vw,3.6rem) 0}
+.detail-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(1.8rem,4vw,3rem);align-items:start}
+@media(max-width:860px){.detail-grid{grid-template-columns:1fr}}
+.detail-main section+section{margin-top:2rem}
+.detail-body h2{font-size:1.5rem;margin:0 0 .8rem}
+.detail-body p.about{color:var(--ink-soft);font-size:1.05rem;line-height:1.7;margin:0 0 1rem;max-width:62ch}
+.info-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.4rem 1.5rem}
+.info-card+.info-card{margin-top:1.2rem}
+.info-card h3{font-family:"Marcellus",serif;font-size:1.05rem;letter-spacing:.03em;margin:0 0 .9rem}
+.timing{display:flex;justify-content:space-between;gap:1rem;padding:.5rem 0;border-bottom:1px solid var(--line-soft);font-size:.94rem}
+.timing:last-child{border-bottom:none}
+.timing span:first-child{color:var(--ink-soft)}
+.timing span:last-child{font-variant-numeric:tabular-nums;font-weight:500;text-align:right}
+.reach-line{display:flex;gap:.7em;font-size:.94rem;color:var(--ink-soft);padding:.4rem 0}
+.reach-line b{color:var(--ink);font-weight:600;min-width:96px;display:inline-block}
+.offer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+@media(max-width:600px){.offer-grid{grid-template-columns:1fr}}
+.offer{background:var(--niche);border:1px solid var(--line);border-radius:14px;padding:1.15rem 1.25rem;display:flex;flex-direction:column}
+.offer .hi{font-size:.76rem;font-weight:600;color:var(--gold);margin-bottom:.15rem;text-transform:uppercase;letter-spacing:.04em}
+.offer h4{font-family:"Marcellus",serif;font-weight:400;font-size:1.14rem;margin:0 0 .4rem}
+.offer p{font-size:.88rem;color:var(--ink-soft);margin:0 0 1rem;flex:1}
+.offer .foot{display:flex;align-items:center;justify-content:space-between;gap:.6rem;border-top:1px solid var(--line-soft);padding-top:.8rem}
+.offer .price{font-family:"Marcellus",serif;font-size:1rem}
+.offer .price small{display:block;font-family:"Mukta";font-size:.72rem;color:var(--ink-faint)}
+.note-strip{margin-top:1.4rem;padding:1rem 1.2rem;border-left:3px solid var(--gold);background:var(--niche);border-radius:0 10px 10px 0;font-size:.92rem;color:var(--ink-soft)}
+
+/* series (watch) */
+.series{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
+@media(max-width:900px){.series{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.series{grid-template-columns:1fr}}
+.svid{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--surface);cursor:pointer;transition:transform .25s,box-shadow .25s}
+.svid:hover{transform:translateY(-4px);box-shadow:var(--shadow-sm)}
+.svid .thumb{aspect-ratio:16/9;position:relative;overflow:hidden}
+.svid .thumb img{width:100%;height:100%;object-fit:cover}
+.svid .thumb .play{position:absolute;inset:0;margin:auto;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.85);color:var(--maroon)}
+.svid .thumb .play svg{width:20px;height:20px;margin-left:3px}
+.svid .cap{padding:1rem 1.2rem}
+.svid .cap .k{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.svid .cap h3{font-size:1.08rem;margin:.2rem 0 0}
+
+/* footer */
+footer{background:var(--bg-2);border-top:1px solid var(--line);padding:clamp(2.6rem,5vw,3.8rem) 0 2rem}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:2rem}
+@media(max-width:820px){.foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
+@media(max-width:480px){.foot-grid{grid-template-columns:1fr}}
+.foot-brand p{color:var(--ink-soft);font-size:.94rem;max-width:34ch;margin:1rem 0 0}
+.foot-lang{margin-top:1rem;font-size:.85rem;color:var(--ink-faint)}
+.foot-col h4{font-family:"Marcellus",serif;font-size:.92rem;letter-spacing:.06em;text-transform:uppercase;margin:0 0 .9rem}
+.foot-col a{display:block;font-size:.92rem;color:var(--ink-soft);padding:.3em 0}
+.foot-col a:hover{color:var(--saffron-deep)}
+.foot-bot{margin-top:2.4rem;padding-top:1.3rem;border-top:1px solid var(--line-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;font-size:.82rem;color:var(--ink-faint)}
+
+/* ---------- puja detail page ---------- */
+.pd-hero .rating{display:flex;width:fit-content;align-items:center;gap:.35em;color:#F0C98A;font-weight:600;font-size:.9rem;margin-bottom:.7rem}
+.pd-hero .rating .stars{letter-spacing:1px}
+.pd-hero .price{display:flex;align-items:baseline;gap:.5rem;margin:1.1rem 0 1.3rem;color:#fff}
+.pd-hero .price b{font-family:"Marcellus",serif;font-size:1.9rem;font-weight:400}
+.pd-hero .price span{color:rgba(255,255,255,.8);font-size:.9rem}
+.pd-body{padding:clamp(2.4rem,5vw,3.6rem) 0}
+.pd-grid{display:grid;grid-template-columns:1.62fr 1fr;gap:clamp(1.8rem,4vw,3rem);align-items:start}
+@media(max-width:880px){.pd-grid{grid-template-columns:1fr}}
+.pd-main>section{margin-bottom:2.4rem}
+.pd-main h2{font-size:1.5rem;margin:0 0 1rem}
+.pd-main p{color:var(--ink-soft);font-size:1.03rem;line-height:1.7;margin:0 0 1rem;max-width:64ch}
+/* packages */
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+@media(max-width:760px){.pkg-grid{grid-template-columns:1fr}}
+.pkg{border:1px solid var(--line);border-radius:16px;padding:1.4rem 1.3rem;background:var(--surface);display:flex;flex-direction:column;position:relative}
+.pkg.feat{border-color:var(--saffron);box-shadow:0 0 0 2px rgba(220,108,24,.16)}
+.pkg .rec{position:absolute;top:-11px;left:1.2rem;background:var(--saffron);color:#fff;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:.25em .7em;border-radius:999px}
+.pkg h4{font-family:"Marcellus",serif;font-weight:400;font-size:1.2rem;margin:0 0 .2rem}
+.pkg .pk-for{font-size:.85rem;color:var(--ink-faint);margin-bottom:.7rem}
+.pkg .pk-price{font-family:"Marcellus",serif;font-size:1.6rem;color:var(--maroon);margin-bottom:.9rem}
+.pkg ul{list-style:none;margin:0 0 1.1rem;padding:0;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.pkg li{display:flex;gap:.55em;font-size:.9rem;color:var(--ink-soft);align-items:flex-start}
+.pkg li svg{width:16px;height:16px;flex:none;margin-top:.15rem}
+.pkg li.yes svg{color:#2E9E54}.pkg li.no{color:var(--ink-faint)}.pkg li.no svg{color:var(--ink-faint)}
+.pkg .btn{width:100%}
+/* promise */
+.promise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media(max-width:760px){.promise-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:460px){.promise-grid{grid-template-columns:1fr}}
+.promise-grid .pi{display:flex;gap:.7rem;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem}
+.promise-grid .pi .ic{width:36px;height:36px;border-radius:9px;flex:none;display:grid;place-items:center;background:#F6E7D3;color:var(--saffron-deep)}
+.promise-grid .pi .ic svg{width:20px;height:20px}
+.promise-grid .pi b{display:block;font-size:.94rem;color:var(--ink)}
+.promise-grid .pi span{font-size:.84rem;color:var(--ink-soft)}
+/* procedure list */
+.proc-list{list-style:none;margin:0;padding:0;counter-reset:pc}
+.proc-list li{position:relative;padding:0 0 1.1rem 3rem;counter-increment:pc}
+.proc-list li::before{content:counter(pc);position:absolute;left:0;top:0;width:2rem;height:2rem;border-radius:50%;background:var(--niche);border:1px solid var(--gold);color:var(--maroon);font-family:"Marcellus",serif;display:grid;place-items:center;font-size:.9rem}
+.proc-list li::after{content:"";position:absolute;left:1rem;top:2rem;bottom:0;width:1px;background:var(--line)}
+.proc-list li:last-child::after{display:none}
+.proc-list li b{display:block;color:var(--ink);font-weight:600;margin-bottom:.15rem}
+.proc-list li span{color:var(--ink-soft);font-size:.94rem}
+/* chips / benefits / includes */
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chip{background:var(--niche);border:1px solid var(--line);border-radius:999px;padding:.45em 1em;font-size:.88rem;color:var(--ink-soft)}
+.inc-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+@media(max-width:560px){.inc-list{grid-template-columns:1fr}}
+.inc-list li{display:flex;gap:.55em;align-items:flex-start;font-size:.95rem;color:var(--ink-soft)}
+.inc-list li svg{width:18px;height:18px;color:#2E9E54;flex:none;margin-top:.1rem}
+.benefit-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.7rem}
+.benefit-list li{display:flex;gap:.6em;font-size:.98rem;color:var(--ink-soft)}
+.benefit-list li svg{width:19px;height:19px;color:var(--saffron-deep);flex:none;margin-top:.15rem}
+/* faq */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:1rem 2rem 1rem 0;position:relative;font-weight:600;color:var(--ink);font-size:1rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:.2rem;top:.85rem;font-size:1.4rem;color:var(--saffron-deep);font-weight:400}
+.faq details[open] summary::after{content:"–"}
+.faq p{margin:0 0 1.1rem;color:var(--ink-soft);font-size:.95rem;line-height:1.65;max-width:66ch}
+/* sticky booking sidebar */
+.pd-side{position:sticky;top:88px}
+.pd-side .book-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1.5rem;box-shadow:var(--shadow-sm)}
+.pd-side .bc-name{font-family:"Marcellus",serif;font-size:1.2rem;margin:0 0 .2rem}
+.pd-side .bc-price{color:var(--maroon);font-family:"Marcellus",serif;font-size:1.5rem;margin-bottom:.2rem}
+.pd-side .bc-price small{font-family:"Mukta";font-size:.8rem;color:var(--ink-faint);font-weight:400}
+.pd-side .bc-meta{font-size:.88rem;color:var(--ink-soft);margin:.6rem 0 1rem;display:flex;flex-direction:column;gap:.4rem}
+.pd-side .bc-meta div{display:flex;gap:.5em;align-items:center}
+.pd-side .bc-meta svg{width:16px;height:16px;color:var(--gold);flex:none}
+.pd-side .btn{width:100%}
+.pd-side .assure{font-size:.78rem;color:var(--ink-faint);text-align:center;margin-top:.8rem}
+
+/* centered note-strip = symmetric (top accent, no left rail) */
+.note-strip.center{border-left:none;border-top:3px solid var(--gold);border-radius:10px;text-align:center}
+
+/* prasad order card (temple detail sidebar) */
+.prasad-card{background:linear-gradient(160deg,#FCEFDD,#FBF4E8);border:1px solid var(--line);border-radius:16px;padding:1.4rem 1.5rem}
+.prasad-card h3{font-family:"Marcellus",serif;font-size:1.05rem;margin:0 0 .3rem}
+.prasad-card .pname{font-weight:600;color:var(--ink);font-size:1.02rem}
+.prasad-card .pfrom{color:var(--maroon);font-family:"Marcellus",serif;font-size:1.4rem;margin:.2rem 0 .1rem}
+.prasad-card .pfrom small{font-family:"Mukta";font-size:.8rem;color:var(--ink-faint);font-weight:400}
+.prasad-card p{font-size:.88rem;color:var(--ink-soft);margin:.5rem 0 1rem}
+.prasad-card .btn{width:100%}
+
+/* amount stepper + presets (prasad modal) */
+.amt-presets{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.7rem}
+.amt-chip{border:1px solid var(--line);background:var(--bg-3);border-radius:999px;padding:.5em 1em;font-size:.92rem;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:.15s}
+.amt-chip:hover{border-color:var(--saffron)}
+.amt-chip.sel{border-color:var(--saffron);background:#FDF2E6;color:var(--saffron-deep)}
+.amt-stepper{display:flex;align-items:stretch;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);max-width:230px}
+.amt-stepper button{width:46px;border:none;background:var(--bg-3);color:var(--maroon);font-size:1.3rem;cursor:pointer;line-height:1}
+.amt-stepper button:hover{background:#F6E7D3}
+.amt-stepper .amt-in{flex:1;display:flex;align-items:center;gap:.15rem;padding:0 .6rem;font-family:"Marcellus",serif;font-size:1.25rem;color:var(--ink)}
+.amt-stepper input{border:none;background:transparent;font:inherit;width:100%;color:var(--ink);outline:none}
+.intl-note{background:#FFF6E6;border:1px solid #F0D9A8;border-radius:12px;padding:.85rem 1rem;font-size:.88rem;color:#8a6a2a;margin:.4rem 0 0;display:none}
+.intl-note.show{display:block}
+.pr-total{margin-top:.8rem;font-family:"Mukta";font-size:.95rem;color:var(--ink-soft)}
+.pr-total b{font-family:"Marcellus",serif;font-size:1.2rem;color:var(--maroon)}
+.pr-total span{color:var(--ink-faint);font-size:.86rem}
+
+/* ---------- modals ---------- */
+.modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:1.2rem}
+.modal.open{display:flex}
+.modal-scrim{position:absolute;inset:0;background:rgba(34,16,8,.6);backdrop-filter:blur(3px)}
+.modal-card{position:relative;z-index:2;background:var(--surface);border-radius:22px;box-shadow:var(--shadow-lg);width:min(560px,100%);max-height:92vh;overflow:auto;padding:clamp(1.6rem,3vw,2.4rem)}
+.modal-card.wide{width:min(680px,100%)}
+.modal-close{position:absolute;top:1rem;right:1rem;width:38px;height:38px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);cursor:pointer;display:grid;place-items:center;transition:.2s}
+.modal-close:hover{border-color:var(--maroon);color:var(--maroon)}
+.modal-close svg{width:18px;height:18px}
+.modal h2{font-size:1.7rem;margin:0 0 .4rem;color:var(--maroon)}
+.modal .sub{color:var(--ink-soft);margin:0 0 1.4rem;font-size:1.02rem}
+.field{margin-bottom:1rem}
+.field label{display:block;font-weight:600;font-size:.9rem;margin-bottom:.4rem;color:var(--ink)}
+.field input,.field textarea,.field select{width:100%;padding:.8em .95em;border:1px solid var(--line);border-radius:12px;font:inherit;color:var(--ink);background:var(--bg-3);transition:border-color .2s,box-shadow .2s}
+.field input::placeholder,.field textarea::placeholder{color:var(--ink-faint)}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--saffron);box-shadow:0 0 0 3px rgba(220,108,24,.15);background:var(--surface)}
+.field textarea{min-height:74px;resize:vertical}
+.field .hint{font-size:.8rem;color:var(--ink-faint);margin-top:.35rem}
+.checkline{display:flex;align-items:center;gap:.5em;font-size:.9rem;color:var(--ink-soft);margin-top:.5rem;cursor:pointer}
+.checkline input{width:auto}
+.opts{display:grid;gap:.6rem}
+.opts.two{grid-template-columns:1fr 1fr}
+.opts.three{grid-template-columns:1fr 1fr 1fr}
+@media(max-width:520px){.opts.two,.opts.three{grid-template-columns:1fr}}
+.opt{display:flex;align-items:flex-start;gap:.6rem;border:1px solid var(--line);border-radius:12px;padding:.75rem .85rem;cursor:pointer;background:var(--bg-3);transition:.18s}
+.opt:hover{border-color:var(--saffron)}
+.opt.sel{border-color:var(--saffron);background:#FDF2E6;box-shadow:0 0 0 2px rgba(220,108,24,.15)}
+.opt input{margin-top:.2rem}
+.opt>span{display:flex;flex-direction:column;gap:.12rem;min-width:0}
+.opt .ot{display:block;font-weight:600;font-size:.94rem;color:var(--ink);line-height:1.2}
+.opt .op{display:block;font-size:.8rem;color:var(--ink-faint);line-height:1.2}
+.opt .opr{margin-left:auto;font-family:"Marcellus",serif;font-size:.98rem;color:var(--maroon);white-space:nowrap}
+.modal .foot-note{text-align:center;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);margin-top:1.1rem}
+.modal .grp-label{font-family:"Marcellus",serif;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:1.3rem 0 .6rem}
+.book-summary{background:var(--niche);border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem;font-size:.92rem;color:var(--ink-soft);margin-bottom:1.1rem}
+.book-summary b{color:var(--ink)}
+.success{text-align:center;padding:.5rem 0}
+.success .tick{width:70px;height:70px;margin:0 auto 1rem;border-radius:50%;background:#E9F6EC;color:#2E7D46;display:grid;place-items:center}
+.success .tick svg{width:34px;height:34px}
+.success .bkid{font-family:"Marcellus",serif;font-size:1.3rem;color:var(--maroon);letter-spacing:.02em;margin:.3rem 0 .1rem}
+
+/* floating guidance button */
+.fab{position:fixed;right:18px;bottom:18px;z-index:150;display:inline-flex;align-items:center;gap:.5em;background:linear-gradient(180deg,#9c3128,var(--maroon-deep));color:#fff;border:none;border-radius:999px;padding:.8em 1.25em;font-weight:600;font-size:.95rem;cursor:pointer;box-shadow:var(--shadow);transition:transform .2s}
+.fab:hover{transform:translateY(-2px)}
+.fab svg{width:19px;height:19px}
+@media(max-width:520px){.fab span{display:none}.fab{padding:.9em}}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.btn:hover,.ecard:hover,.pray:hover{transform:none}html{scroll-behavior:auto}}
+
+/* ===================== SEVA / DONATION ===================== */
+.seva-hero{position:relative;min-height:min(66vh,500px);display:flex;align-items:center;justify-content:center;text-align:center;padding:0;overflow:hidden;isolation:isolate;background:#0e0602}
+.seva-hero .sv-bg{position:absolute;inset:0;z-index:-2}
+.seva-hero .sv-bg img{width:100%;height:100%;object-fit:cover;object-position:center 50%}
+.seva-hero .sv-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;z-index:1}
+@media(prefers-reduced-motion:reduce){.seva-hero .sv-bg video{display:none}}
+.seva-hero .sv-scrim{position:absolute;inset:0;z-index:-1;background:radial-gradient(92% 92% at 50% 50%,rgba(10,4,1,.5),rgba(10,4,1,.18) 66%,rgba(10,4,1,0)),linear-gradient(180deg,rgba(12,5,2,.55) 0%,rgba(12,5,2,.34) 45%,rgba(10,4,1,.66) 100%)}
+.seva-hero .sv-inner{width:100%;max-width:820px;margin:0 auto;padding:clamp(2.6rem,6vw,4.2rem) clamp(1.1rem,4vw,2rem);color:#fff;display:flex;flex-direction:column;align-items:center}
+.seva-hero .sv-eye{font-family:"Marcellus",serif;letter-spacing:.24em;text-transform:uppercase;font-size:.78rem;color:#F6D9A6;margin-bottom:1rem}
+.seva-hero h1{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(2.1rem,5vw,3.6rem);line-height:1.1;margin:.2rem auto 1rem;max-width:18ch;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.85),0 2px 10px rgba(0,0,0,.6),0 4px 30px rgba(0,0,0,.45)}
+.seva-hero h1 em{font-style:italic;color:#fff}
+.seva-hero p.lede{font-size:clamp(1.02rem,1.7vw,1.2rem);line-height:1.6;max-width:56ch;color:rgba(255,255,255,.92);margin:0 auto 1.7rem;text-shadow:0 1px 10px rgba(0,0,0,.45)}
+.seva-hero .sv-cta{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}
+.seva-hero .btn-ghost{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.55);color:#fff;backdrop-filter:blur(2px)}
+.seva-hero .btn-ghost:hover{background:rgba(255,255,255,.2);border-color:#fff;color:#fff}
+.seva-hero .sv-loc{margin-top:1.5rem;font-size:.9rem;color:rgba(255,255,255,.82);display:flex;align-items:center;justify-content:center;gap:.5rem;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.seva-hero .sv-loc svg{width:16px;height:16px;stroke:#F0C579;fill:none;stroke-width:1.7}
+
+.seva-vision{background:var(--surface)}
+.seva-vision .vwrap{max-width:820px;margin:0 auto;text-align:center}
+.seva-vision .om{font-family:"Fraunces",serif;font-size:2rem;color:var(--saffron);margin:0 0 .3rem}
+.seva-vision h2{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(1.6rem,3.4vw,2.4rem);line-height:1.2;margin:.2rem 0 1.2rem;color:var(--ink)}
+.seva-vision p{font-size:clamp(1.02rem,1.7vw,1.16rem);line-height:1.75;color:var(--ink-soft);margin:0 0 1.1rem}
+.seva-vision p em{color:var(--maroon);font-style:italic}
+.seva-sign{margin-top:1.6rem;font-family:"Marcellus",serif;letter-spacing:.04em;color:var(--ink-faint);font-size:.94rem}
+
+.build-band{background:var(--bg-2)}
+.build-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-top:2rem}
+.bcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
+.bcard .bimg{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--niche)}
+.bcard .bimg img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.bcard:hover .bimg img{transform:scale(1.05)}
+.bcard .bimg.illus{display:flex;align-items:center;justify-content:center;background:radial-gradient(120% 120% at 50% 20%,#FBEAD0,#F4E0C4)}
+.bcard .bimg.illus svg{width:64%;height:64%}
+.bcard .bnum{position:absolute;top:.7rem;left:.7rem;width:30px;height:30px;border-radius:50%;background:rgba(20,8,3,.55);color:#F6D9A6;font-family:"Marcellus",serif;font-size:.9rem;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+.bcard .bbody{padding:1.1rem 1.15rem 1.3rem}
+.bcard h3{font-family:"Fraunces",serif;font-weight:500;font-size:1.16rem;margin:0 0 .4rem;color:var(--ink)}
+.bcard p{font-size:.92rem;line-height:1.55;color:var(--ink-soft);margin:0}
+
+.gau-band{background:var(--surface)}
+.gau-wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(1.6rem,4vw,3.4rem);align-items:center}
+.gau-art.has-vid{border:1px solid var(--line);border-radius:22px;position:relative;overflow:hidden;aspect-ratio:4/3;background:#0e0602;box-shadow:var(--shadow)}
+.gau-art.has-vid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.gau-art.has-vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+@media(prefers-reduced-motion:reduce){.gau-art.has-vid video{display:none}}
+.gau-vid-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:1.6rem 1.4rem 1.2rem;background:linear-gradient(180deg,rgba(10,4,1,0),rgba(10,4,1,.82));color:#fff;text-align:center}
+.gau-vid-cap b{font-family:"Fraunces",serif;font-size:2.4rem;line-height:1;color:#FBD38A;display:block;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.gau-vid-cap span{font-family:"Marcellus",serif;letter-spacing:.1em;text-transform:uppercase;font-size:.74rem;color:rgba(255,255,255,.88)}
+.gau-txt .eyebrow{color:var(--saffron-deep)}
+.gau-txt h2{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(1.6rem,3.2vw,2.3rem);line-height:1.18;margin:.3rem 0 1rem;color:var(--ink)}
+.gau-txt p{font-size:1.02rem;line-height:1.7;color:var(--ink-soft);margin:0 0 1.3rem}
+.sponsor-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.sponsor-chip{border:1.5px solid var(--line);background:var(--niche);border-radius:999px;padding:.6em 1.05em;font-size:.9rem;font-weight:600;color:var(--maroon);cursor:pointer;transition:.18s;font-family:inherit}
+.sponsor-chip:hover{border-color:var(--saffron);background:#FCEBD6;transform:translateY(-1px)}
+
+/* progress */
+.raise{background:var(--bg-2)}
+.raise-card{max-width:900px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:clamp(1.5rem,3.5vw,2.4rem)}
+.raise-top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.6rem;margin-bottom:1rem}
+.raise-top .rn{font-family:"Fraunces",serif;font-size:clamp(1.5rem,3vw,2rem);color:var(--maroon)}
+.raise-top .rn small{color:var(--ink-faint);font-size:.82rem;font-weight:400;font-family:"Mukta"}
+.raise-top .rg{font-family:"Marcellus",serif;letter-spacing:.05em;color:var(--ink-soft);font-size:.94rem}
+.bar{height:16px;border-radius:999px;background:var(--bg-2);border:1px solid var(--line);overflow:hidden;position:relative}
+.bar>i{position:absolute;inset:0;width:var(--p,42%);background:linear-gradient(90deg,var(--saffron),var(--maroon));border-radius:999px;display:block}
+.raise-stats{display:flex;gap:2.6rem;flex-wrap:wrap;justify-content:center;text-align:center}
+.raise-stats div b{font-family:"Fraunces",serif;font-size:1.5rem;color:var(--ink);display:block}
+.raise-stats div span{font-size:.85rem;color:var(--ink-faint)}
+
+/* donate panel */
+.donate-band{background:linear-gradient(180deg,var(--bg) 0%,#F3E6D3 100%)}
+.donate-grid{display:grid;grid-template-columns:1fr .85fr;gap:clamp(1.4rem,3.5vw,3rem);align-items:start}
+.donate-lede h2{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.15;margin:0 0 1rem;color:var(--ink)}
+.donate-lede p{font-size:1.04rem;line-height:1.7;color:var(--ink-soft);margin:0 0 1.2rem}
+.trust-list{list-style:none;padding:0;margin:1.3rem 0 0;display:grid;gap:.75rem}
+.trust-list li{display:flex;gap:.7rem;align-items:flex-start;font-size:.96rem;color:var(--ink-soft)}
+.trust-list li svg{width:20px;height:20px;flex:none;stroke:var(--green);fill:none;stroke-width:2;margin-top:2px}
+.dpanel{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow-lg);padding:clamp(1.3rem,3vw,1.9rem)}
+.dpanel h3{font-family:"Fraunces",serif;font-weight:500;font-size:1.3rem;margin:0 0 .3rem;color:var(--ink)}
+.dpanel .dsub{font-size:.88rem;color:var(--ink-faint);margin:0 0 1.1rem}
+.freq{display:flex;background:var(--bg-2);border-radius:12px;padding:4px;margin-bottom:1.2rem}
+.freq button{flex:1;border:none;background:none;padding:.6em;border-radius:9px;font-family:inherit;font-size:.92rem;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:.18s}
+.freq button.on{background:var(--surface);color:var(--maroon);box-shadow:var(--shadow-sm)}
+.amt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-bottom:.9rem}
+.amt{border:1.5px solid var(--line);background:var(--niche);border-radius:12px;padding:.85em .4em;font-family:"Mukta";font-size:1.02rem;font-weight:700;color:var(--ink);cursor:pointer;transition:.16s;text-align:center}
+.amt:hover{border-color:var(--saffron)}
+.amt.on{border-color:var(--saffron);background:#FCEBD6;color:var(--maroon-deep);box-shadow:0 0 0 3px rgba(220,108,24,.12)}
+.amt small{display:block;font-size:.68rem;font-weight:500;color:var(--ink-faint);margin-top:2px;letter-spacing:.02em}
+.amt.on small{color:var(--saffron-deep)}
+.custom-amt{position:relative;margin-bottom:1.1rem}
+.custom-amt span{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink-faint);font-weight:700}
+.custom-amt input{width:100%;padding:.85em .9em .85em 2rem;border:1.5px solid var(--line);border-radius:12px;font-size:1.05rem;font-weight:600;font-family:"Mukta";color:var(--ink);background:var(--bg)}
+.custom-amt input:focus{outline:none;border-color:var(--saffron);box-shadow:0 0 0 3px rgba(220,108,24,.12)}
+.dfields{display:grid;gap:.7rem;margin-bottom:1.1rem}
+.dfields input{width:100%;padding:.8em .9em;border:1.5px solid var(--line);border-radius:11px;font-size:.98rem;font-family:"Mukta";color:var(--ink);background:var(--bg)}
+.dfields input:focus{outline:none;border-color:var(--saffron);box-shadow:0 0 0 3px rgba(220,108,24,.12)}
+.d80g{display:flex;align-items:center;gap:.5rem;font-size:.84rem;color:var(--ink-soft);margin-bottom:1rem;cursor:pointer}
+.d80g input{width:16px;height:16px;accent-color:var(--saffron)}
+.dpay{width:100%;justify-content:center;font-size:1.05rem;padding:.95em}
+.dsecure{text-align:center;font-size:.78rem;color:var(--ink-faint);margin-top:.8rem;display:flex;align-items:center;justify-content:center;gap:.4rem}
+.dsecure svg{width:13px;height:13px;stroke:var(--ink-faint);fill:none;stroke-width:1.8}
+
+/* blessing */
+.bless{background:var(--maroon-deep);color:#F7E7CE;text-align:center}
+.bless .bw{max-width:760px;margin:0 auto}
+.bless .lotus{font-size:1.8rem;margin-bottom:.6rem}
+.bless blockquote{font-family:"Fraunces",serif;font-style:italic;font-weight:400;font-size:clamp(1.3rem,3vw,1.9rem);line-height:1.4;margin:0 0 1rem;color:#FBEAD0}
+.bless cite{font-family:"Marcellus",serif;font-style:normal;letter-spacing:.08em;text-transform:uppercase;font-size:.8rem;color:#E0B888}
+
+@media(max-width:880px){
+  .build-grid{grid-template-columns:repeat(2,1fr)}
+  .gau-wrap{grid-template-columns:1fr;gap:1.6rem}
+  .donate-grid{grid-template-columns:1fr}
+  .dpanel{order:-1}
+}
+@media(max-width:560px){
+  .build-grid{grid-template-columns:1fr}
+  .amt-grid{grid-template-columns:repeat(2,1fr)}
+  .raise-stats{gap:1.3rem}
+  .seva-hero{min-height:min(72vh,560px)}
+}
+</style>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html" data-route="/" aria-label="Devanshya home">
+      <img class="mark" src="images/logo_icon.png" alt="" aria-hidden="true">
+      <span><span class="name">Devanshya</span><span class="sub">Darshan · Puja · Prasad</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="temples.html" data-route="/temples">Temples</a>
+      <a href="pujas.html" data-route="/pujas">Pujas</a>
+      <a href="offer-puja.html" data-route="/offer">Offer Puja</a>
+      <a href="prasad.html" data-route="/prasad">Prasad</a>
+      <a href="watch.html" data-route="/watch">Watch</a>
+      <a href="seva.html" data-route="/seva">Seva</a>
+      <a href="our-promise.html" data-route="/promise">Our Promise</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="btn btn-maroon btn-sm" data-book="">Book a Puja</button>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+ <!-- ===== HOME ===== -->
+ <div class="page" id="page-home" data-route="/">
+  <section class="hero">
+    <div class="hero-bg"><img src="images/hero.jpg" alt=""><video autoplay muted loop playsinline preload="auto" poster="images/hero.jpg"><source src="images/hero.mp4" type="video/mp4"></video></div>
+    <div class="hero-scrim"></div>
+    <div class="wrap hero-inner">
+      <div class="eyebrow">॥ योगी दर्शन ॥ · Ahmedabad</div>
+      <h1>India's sacred temples, <em>closer to you.</em></h1>
+      <p>Discover the temples we visit ourselves, understand their living traditions, and offer authentic puja, chadhava and prasad — from wherever you are.</p>
+      <div class="hero-cta"><a class="btn btn-primary" href="temples.html" data-route="/temples">Explore Temples</a><button class="btn btn-ghost" data-book="">Book a Puja</button></div>
+      <div class="hero-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg> Verified priests &amp; video proof</div>
+    </div>
+  </section>
+
+  <div class="trust"><div class="wrap"><ul>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified temples</li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20c.6-3.5 3.2-5.5 6.5-5.5s5.9 2 6.5 5.5" stroke-linecap="round"/></svg>Verified priests</li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="6" width="17" height="12" rx="2"/><path d="M3.5 10h17"/></svg>Secure payments</li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="6" width="12" height="12" rx="2"/><path d="M15.5 10l5-3v10l-5-3z" stroke-linejoin="round"/></svg>Video confirmation</li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 9h16v8a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M4 9l2-4h12l2 4" stroke-linejoin="round"/></svg>Prasad to your door</li>
+  </ul></div></div>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal"><div class="eyebrow">Begin with your need</div><h2>What are you praying for?</h2><p>Start with your intention — we'll show the rituals traditionally performed for it, explained honestly.</p></div>
+      <div class="pray-grid" id="prayGrid"></div>
+    </div>
+  </section>
+
+  <section style="background:var(--bg-2)">
+    <div class="wrap">
+      <div class="section-head reveal"><div class="eyebrow">At a temple or your home</div><h2>Popular pujas</h2><p>Every ritual states its tradition and what you receive — never a guaranteed outcome.</p></div>
+      <div class="card-grid" id="homePujaGrid"></div>
+      <div class="center" style="margin-top:2.2rem"><a class="btn btn-ghost" href="pujas.html" data-route="/pujas">See all pujas</a></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal"><div class="eyebrow">Our first city</div><h2>The sacred side of Ahmedabad</h2><p>We begin where we can visit every temple ourselves — filming, verifying and meeting each priest and trust.</p></div>
+      <div class="card-grid" id="homeTempleGrid"></div>
+      <div class="center" style="margin-top:2.2rem"><a class="btn btn-brass" href="temples.html" data-route="/temples">See all Ahmedabad temples</a></div>
+    </div>
+  </section>
+
+  <section style="background:var(--bg-2)">
+    <div class="wrap">
+      <div class="section-head reveal"><div class="eyebrow">The difference</div><h2>We don't list temples. We go there.</h2><p>What you read, watch and book here comes from the ground — our own team, cameras and priest relationships — not from a search engine.</p></div>
+      <div class="how3">
+        <div class="c reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="6" width="12" height="12" rx="2"/><path d="M15.5 10l5-3v10l-5-3z" stroke-linejoin="round"/></svg></div><h3>Original documentation</h3><p>A full documentary, guide and photography from every temple we visit.</p></div>
+        <div class="c reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.2"/><path d="M6 20c.5-3.2 3-5 6-5s5.5 1.8 6 5" stroke-linecap="round"/></svg></div><h3>Verified priests</h3><p>Real, KYC-verified priests and temple trusts — named and accountable.</p></div>
+        <div class="c reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Video proof of every ritual</h3><p>Your name, gotra and sankalp — recorded and sent privately to you.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap twoup">
+      <div class="feature reveal"><img src="images/sec_prasad.jpg" alt="Deity darshan with marigold garlands"><div class="sc"></div><div class="fc"><div class="eyebrow">Prasad from sacred temples</div><h3>A physical thread to the divine</h3><p>Choose a temple and receive its blessed prasad — with significance, packing date and courier tracking.</p><a class="btn btn-brass" href="prasad.html" data-route="/prasad" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.6);color:#fff">Explore Prasad</a></div></div>
+      <div class="feature reveal"><img src="images/sec_watch.jpg" alt="Temple documentary"><div class="sc"></div><div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div><div class="fc"><div class="eyebrow">Devanshya Originals</div><h3>Stories from India's temples</h3><p>Documentaries, priest interviews and darshan we film ourselves — because we go there.</p><a class="btn btn-primary" href="watch.html" data-route="/watch">Watch Originals</a></div></div>
+    </div>
+  </section>
+
+  <section class="ctaband"><div class="wrap center"><div class="eyebrow">॥ शुभम् ॥</div><h2>Your prayer, honoured with care.</h2><p>Begin with a temple you love, or a blessing you seek. We'll walk with you the rest of the way.</p><div class="center"><a class="btn btn-ghost" href="temples.html" data-route="/temples" style="margin-right:.6rem">Explore Temples</a><button class="btn btn-primary" data-book="">Book a Puja</button></div></div></section>
+ </div>
+
+ <!-- ===== TEMPLES ===== -->
+ <div class="page" id="page-temples" data-route="/temples" hidden>
+  <section class="page-hero has-vid"><div class="ph-bg"><img data-img="t_jagannath" alt=""><video autoplay muted loop playsinline preload="auto"><source src="images/vid_temples.mp4" type="video/mp4"></video></div><div class="ph-scrim"></div><div class="wrap"><div class="eyebrow">Ahmedabad · Our first city</div><h1>Temples we're documenting</h1><p>We begin in one city so we can visit every temple ourselves — film it, verify its timings and rituals, and meet each priest and trust before offering a single puja.</p></div></section>
+  <section><div class="wrap"><div class="card-grid" id="templeGrid"></div>
+    <div class="note-strip center" style="max-width:820px;margin:2.4rem auto 0;border-left:none;border-top:3px solid var(--gold);border-radius:10px">Some temples are <b>content partners</b> — we document and share their darshan and story first, and add bookable puja only where the trust and priests welcome it. We never sell a ritual we cannot reliably fulfil.</div>
+  </div></section>
+ </div>
+
+ <!-- ===== TEMPLE DETAIL ===== -->
+ <div class="page" id="page-temple" data-route="/temple" hidden><div id="templeDetail"></div></div>
+
+ <!-- ===== PUJA DETAIL ===== -->
+ <div class="page" id="page-puja" data-route="/puja" hidden><div id="pujaDetail"></div></div>
+
+ <!-- ===== PUJAS ===== -->
+ <div class="page" id="page-pujas" data-route="/pujas" hidden>
+  <section class="page-hero has-vid"><div class="ph-bg"><img data-img="p_rudrabhishek" alt=""><video autoplay muted loop playsinline preload="auto"><source src="images/vid_pujas.mp4" type="video/mp4"></video></div><div class="ph-scrim"></div><div class="wrap"><div class="eyebrow">Traditionally performed for…</div><h1>Pujas &amp; offerings</h1><p>Start with your intention, not a Sanskrit name. Offer any puja at a temple, at your home in Ahmedabad, or on your behalf — with a video and prasad.</p></div></section>
+  <section style="padding-top:clamp(2.2rem,4vw,3rem)"><div class="wrap"><div class="how3">
+     <div class="c"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 20V9l8-5 8 5v11" stroke-linejoin="round"/><path d="M9 20v-6h6v6" stroke-linejoin="round"/></svg></div><h3>At a temple</h3><p>Performed at a verified partner temple, with confirmation, your sankalp, video and prasad.</p></div>
+     <div class="c"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 11l8-6 8 6v8a1 1 0 01-1 1H5a1 1 0 01-1-1z" stroke-linejoin="round"/><path d="M10 20v-5h4v5" stroke-linejoin="round"/></svg></div><h3>At your home</h3><p>A verified priest comes to your home in Ahmedabad, with samagri if you wish.</p></div>
+     <div class="c"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>On your behalf</h3><p>You needn't attend — we perform it with your sankalp and send the video and prasad.</p></div>
+  </div></div></section>
+  <section style="background:var(--bg-2);padding-top:clamp(2.4rem,4vw,3rem)"><div class="wrap">
+    <div class="section-head"><h2>The Ahmedabad catalogue</h2><p>An illustrative launch selection. Actual pricing follows each temple and priest's economics.</p></div>
+    <div class="card-grid" id="pujaGrid"></div>
+    <p class="note-strip center" style="max-width:820px;margin:2.2rem auto 0;border-left:none;border-top:3px solid var(--gold);border-radius:10px"><b>Never a guaranteed outcome</b> — a puja is a devotional act, described in the language of tradition.</p>
+  </div></section>
+ </div>
+
+ <!-- ===== OFFER PUJA ===== -->
+ <div class="page" id="page-offer" data-route="/offer" hidden>
+  <section class="page-hero has-vid"><div class="ph-bg"><img data-img="sec_offer" alt=""><video autoplay muted loop playsinline preload="auto"><source src="images/vid_offer.mp4" type="video/mp4"></video></div><div class="ph-scrim"></div><div class="wrap"><div class="eyebrow">Faith. Wherever you are.</div><h1>Offer puja from anywhere</h1><p>Five simple steps stand between your prayer and its fulfilment — and you will see each one happen.</p></div></section>
+  <section style="padding-top:clamp(2.2rem,4vw,3rem)"><div class="wrap"><div class="how3">
+     <div class="c"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 20V9l8-5 8 5v11" stroke-linejoin="round"/><path d="M9 20v-6h6v6" stroke-linejoin="round"/></svg></div><h3>At a temple</h3><p>Choose a verified partner temple. Receive confirmation, sankalp, video and prasad.</p></div>
+     <div class="c"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 11l8-6 8 6v8a1 1 0 01-1 1H5a1 1 0 01-1-1z" stroke-linejoin="round"/><path d="M10 20v-5h4v5" stroke-linejoin="round"/></svg></div><h3>At your home</h3><p>A verified priest visits your home in the Ahmedabad zone — with complete samagri if you choose.</p></div>
+     <div class="c"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>On your behalf</h3><p>Can't attend? We perform the ritual with your sankalp and send a private video and prasad.</p></div>
+  </div></div></section>
+  <section style="background:var(--bg-2)"><div class="wrap"><div class="section-head"><div class="eyebrow">The process</div><h2>From sankalp to prasad</h2></div>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>Select your puja</h3><p>Choose the ritual and the temple, or a priest at home.</p></div>
+      <div class="step"><div class="num">2</div><h3>Add your Sankalp</h3><p>Name, gotra and your prayer — the intention.</p></div>
+      <div class="step"><div class="num">3</div><h3>Puja is performed</h3><p>A verified priest performs it as tradition prescribes.</p></div>
+      <div class="step"><div class="num">4</div><h3>Receive the video</h3><p>A private recording, with your sankalp named.</p></div>
+      <div class="step"><div class="num">5</div><h3>Receive Prasad</h3><p>Sacred prasad, couriered to your doorstep.</p></div>
+    </div>
+    <div class="center" style="margin-top:2.4rem"><button class="btn btn-primary" data-book="">Book a Puja</button></div>
+  </div></section>
+ </div>
+
+ <!-- ===== PRASAD ===== -->
+ <div class="page" id="page-prasad" data-route="/prasad" hidden>
+  <section class="page-hero has-vid"><div class="ph-bg"><img data-img="sec_prasad" alt=""><video autoplay muted loop playsinline preload="auto"><source src="images/vid_prasad.mp4" type="video/mp4"></video></div><div class="ph-scrim"></div><div class="wrap"><div class="eyebrow">A physical thread to the divine</div><h1>Prasad from sacred temples</h1><p>Choose a temple and receive its blessed prasad at home — with significance, packing date, dispatch schedule and courier tracking, so you always know it is real.</p></div></section>
+  <section style="padding-top:clamp(2.2rem,4vw,3rem)"><div class="wrap"><div class="steps">
+     <div class="step"><div class="num">1</div><h3>Choose a temple</h3><p>Prasad sourced through a reliable local relationship.</p></div>
+     <div class="step"><div class="num">2</div><h3>Packed with care</h3><p>With packing date and storage guidance where relevant.</p></div>
+     <div class="step"><div class="num">3</div><h3>Dispatched</h3><p>A "packed" then "dispatched" update — no guessing.</p></div>
+     <div class="step"><div class="num">4</div><h3>Tracked to you</h3><p>Live courier tracking to your doorstep.</p></div>
+  </div>
+  <div class="note-strip center" style="max-width:820px;margin:2.2rem auto 0">Temple-based prasad is added only after official or reliable local sourcing relationships are established. Delivery within India is included in the price; international delivery is calculated separately.</div>
+  </div></section>
+  <section style="background:var(--bg-2);padding-top:clamp(2.4rem,4vw,3rem)"><div class="wrap">
+    <div class="section-head"><div class="eyebrow">Choose a temple</div><h2>Order prasad from Ahmedabad</h2><p>Pick a temple to receive its blessed prasad — choose your offering amount (from ₹599) and we'll courier it to your door.</p></div>
+    <div class="card-grid" id="prasadTempleGrid"></div>
+  </div></section>
+ </div>
+
+ <!-- ===== WATCH ===== -->
+ <div class="page" id="page-watch" data-route="/watch" hidden>
+  <section class="page-hero has-vid"><div class="ph-bg"><img data-img="sec_watch" alt=""><video autoplay muted loop playsinline preload="auto"><source src="images/vid_watch.mp4" type="video/mp4"></video></div><div class="ph-scrim"></div><div class="wrap"><div class="eyebrow">Devanshya Originals</div><h1>Stories from India's temples</h1><p>Documentaries, priest interviews and darshan we film ourselves. We don't say "we list thousands of temples" — we say we go there.</p></div></section>
+  <section style="padding-top:clamp(2.2rem,4vw,3rem)"><div class="wrap"><div class="series" id="seriesGrid"></div>
+    <div class="note-strip center" style="max-width:820px;margin:2.4rem auto 0;border-left:none;border-top:3px solid var(--gold);border-radius:10px">Every film points back to the temple it was made at — so a story you love is one tap from its darshan, timings and pujas.</div>
+  </div></section>
+ </div>
+
+ <!-- ===== PROMISE ===== -->
+ <div class="page" id="page-promise" data-route="/promise" hidden>
+  <section class="page-hero has-vid"><div class="ph-bg"><img data-img="hero" alt=""><video autoplay muted loop playsinline preload="auto"><source src="images/vid_promise.mp4" type="video/mp4"></video></div><div class="ph-scrim"></div><div class="wrap"><div class="eyebrow">Trust is our first product</div><h1>Our promise</h1><p>People pay us to perform something they may never physically see. So honesty is built into the product — clear language, verified people, and proof of every ritual.</p></div></section>
+  <section style="padding-top:clamp(2.2rem,4vw,3rem)"><div class="wrap creed">
+    <h2>We describe tradition. <em>We never promise miracles.</em></h2>
+    <p>We would rather offer twenty rituals we can perfectly fulfil than five hundred we cannot. Every booking carries a booking ID, a status you can follow, and — wherever permitted — a private video of your ritual.</p>
+    <div class="quotes">
+      <blockquote><b>What we say</b>"Traditionally performed for prosperity." "Devotees perform this ritual seeking peace." "Associated in Hindu tradition with…"</blockquote>
+      <blockquote><b>What we never say</b>Guaranteed wealth. Guaranteed cure. Guaranteed job, marriage or court victory. A puja is a devotional act — never a substitute for medical, legal or financial care.</blockquote>
+    </div>
+  </div></section>
+  <section style="background:var(--bg-2)"><div class="wrap"><div class="section-head"><div class="eyebrow">How we earn trust</div><h2>Built into every booking</h2></div>
+    <div class="how3">
+      <div class="c"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.2"/><path d="M6 20c.5-3.2 3-5 6-5s5.5 1.8 6 5" stroke-linecap="round"/></svg></div><h3>Verified people</h3><p>KYC-verified priests and temple trusts, named and accountable — not anonymous listings.</p></div>
+      <div class="c"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="6" width="12" height="12" rx="2"/><path d="M15.5 10l5-3v10l-5-3z" stroke-linejoin="round"/></svg></div><h3>Video proof</h3><p>Wherever permitted, your ritual is recorded with your name, gotra and sankalp, and sent privately.</p></div>
+      <div class="c"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 9h16v8a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M4 9l2-4h12l2 4" stroke-linejoin="round"/></svg></div><h3>Tracked fulfilment</h3><p>Booked → performed → video → prasad dispatched → delivered. You follow every step.</p></div>
+    </div>
+  </div></section>
+ </div>
+
+ <!-- ===== SEVA / DONATION ===== -->
+ <div class="page" id="page-seva" data-route="/seva" hidden>
+
+  <section class="seva-hero">
+    <div class="sv-bg"><img data-img="sec_gaushala" alt="Cows at a gau shala near Ahmedabad"><video autoplay muted loop playsinline preload="auto"><source src="images/seva_hero.mp4" type="video/mp4"></video></div>
+    <div class="sv-scrim"></div>
+    <div class="sv-inner">
+      <div class="sv-eye">A Temple We Are Building Together</div>
+      <h1>We are building a temple<br>&amp; a <em>gau shala</em>.</h1>
+      <p class="lede">A modern gau shala for 21 cows, a hall for puja and archana, a garden, and rooms for weary travellers. Built by many small acts of seva.</p>
+      <div class="sv-cta">
+        <button class="btn btn-primary" data-goseva-donate>Contribute to the Temple</button>
+        <button class="btn btn-ghost" data-guide>Talk to Our Team</button>
+      </div>
+      <div class="sv-loc"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 10-14 0c0 4.5 7 11 7 11z" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5"/></svg> Land identified on the outskirts of Ahmedabad, Gujarat</div>
+    </div>
+  </section>
+
+  <section class="seva-vision reveal"><div class="wrap"><div class="vwrap">
+    <div class="om">ॐ</div>
+    <h2>Where there is a cow, a lamp, and a roof for the weary, a home becomes a temple.</h2>
+    <p>For years we have helped devotees reach temples that already stand. Now we want to help raise one from bare ground, a place that gives before it ever asks. Twenty one cows will live here, cared for in a clean, modern shed with proper ventilation, fresh water on tap, year round fodder and regular veterinary attention.</p>
+    <p>Around them, a simple hall will hold the sound of aarti at dawn and dusk. A small garden will grow tulsi and flowers for the deity. And a handful of well kept rooms will let a pilgrim or a travelling family <em>rest the night in comfort.</em></p>
+    <p>This is not a grand project. It is a small, honest one, and that is exactly why every rupee shows.</p>
+    <div class="seva-sign">With folded hands, the Devanshya family</div>
+  </div></div></section>
+
+  <section class="build-band reveal"><div class="wrap">
+    <div class="section-head"><div class="eyebrow">What your gift builds</div><h2>Four things, raised stone by stone</h2></div>
+    <div class="build-grid">
+      <div class="bcard">
+        <div class="bimg"><span class="bnum">1</span><img data-img="sec_gaushala" alt="A gau shala sheltering cows"></div>
+        <div class="bbody"><h3>Gau Shala for 21 cows</h3><p>A ventilated modern shed, clean troughs, year round fodder, fresh water and regular veterinary care for all twenty one cows.</p></div>
+      </div>
+      <div class="bcard">
+        <div class="bimg"><span class="bnum">2</span><img data-img="sec_offer" alt="A hall for puja and archana"></div>
+        <div class="bbody"><h3>Puja &amp; Archana Hall</h3><p>An open prayer hall for daily aarti, archana and community bhajans, the beating heart of the temple.</p></div>
+      </div>
+      <div class="bcard">
+        <div class="bimg"><span class="bnum">3</span><img data-img="sec_garden" alt="A sacred garden with water and flowering trees"></div>
+        <div class="bbody"><h3>A Sacred Garden</h3><p>Tulsi, marigold and shade trees, flowers for the deity and a cool, quiet corner for reflection.</p></div>
+      </div>
+      <div class="bcard">
+        <div class="bimg"><span class="bnum">4</span><img data-img="sec_room" alt="A room for Sanatani pilgrims to stay"></div>
+        <div class="bbody"><h3>Rooms for Sanatani</h3><p>A simple dharamshala with a few clean, well kept rooms so Sanatani travellers and those in need can rest the night in comfort.</p></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="gau-band reveal"><div class="wrap"><div class="gau-wrap">
+    <div class="gau-art has-vid">
+      <img data-img="sec_gaushala" alt="">
+      <video autoplay muted loop playsinline preload="auto"><source src="images/seva_gau.mp4" type="video/mp4"></video>
+      <div class="gau-vid-cap"><b>21</b><span>Cows to be sheltered &amp; fed for life</span></div>
+    </div>
+    <div class="gau-txt">
+      <div class="eyebrow">Seva Gau · sponsor a cow</div>
+      <h2>₹5,100 feeds one cow for a whole month.</h2>
+      <p>In our tradition, serving a cow is serving the divine. You can sponsor the care of one of our twenty one cows: her fodder, her water, her shelter. We will send you her name and a photo, and a note each season telling you how she is doing.</p>
+      <div class="sponsor-row">
+        <button class="sponsor-chip" data-donamt="5100">Feed 1 cow · 1 month · ₹5,100</button>
+        <button class="sponsor-chip" data-donamt="15100">Feed 1 cow · 3 months · ₹15,100</button>
+        <button class="sponsor-chip" data-donamt="51000">Sponsor for life · ₹51,000</button>
+      </div>
+    </div>
+  </div></div></section>
+
+  <section class="raise reveal"><div class="wrap"><div class="raise-card">
+    <div class="raise-stats">
+      <div><b>21</b><span>cows to be sheltered &amp; fed</span></div>
+      <div><b>80G</b><span>tax-deductible receipts</span></div>
+      <div><b>100%</b><span>goes to the temple &amp; gau shala</span></div>
+    </div>
+  </div></div></section>
+
+  <section class="donate-band reveal"><div class="wrap"><div class="donate-grid">
+    <div class="donate-lede">
+      <div class="eyebrow" style="color:var(--saffron-deep)">Be part of it</div>
+      <h2>Lay a brick with your name on it.</h2>
+      <p>Every contribution, whether ₹101 or ₹51,000, goes into this one temple. No grand donor is coming to finish it. It will stand because a thousand quiet hands chose to give.</p>
+      <ul class="trust-list">
+        <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> 100% of your gift goes to the temple &amp; gau shala. We cover the platform cost.</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> 80G tax-exemption receipt emailed to you (India).</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> Photo &amp; video updates as each part is built.</li>
+        <li><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> Your name added to the temple's Wall of Seva.</li>
+      </ul>
+    </div>
+
+    <div class="dpanel" id="dpanel">
+      <div id="donateBody">
+      <h3>Contribute to the temple</h3>
+      <p class="dsub">A gift of seva for the gau shala, hall, garden &amp; pilgrim stay.</p>
+      <div class="freq" id="dfreq">
+        <button data-freq="once" class="on">Give once</button>
+        <button data-freq="monthly">Give monthly</button>
+      </div>
+      <div class="amt-grid" id="damts">
+        <button class="amt on" data-amt="101">₹101</button>
+        <button class="amt" data-amt="501">₹501</button>
+        <button class="amt" data-amt="1100">₹1,100</button>
+        <button class="amt" data-amt="2100">₹2,100</button>
+        <button class="amt" data-amt="5100">₹5,100<small>Feed a cow</small></button>
+        <button class="amt" data-amt="11000">₹11,000</button>
+      </div>
+      <div class="custom-amt"><span>₹</span><input id="dCustom" type="number" inputmode="numeric" min="101" placeholder="Other amount"></div>
+      <div class="dfields">
+        <input id="dName" type="text" placeholder="Your name (for the Wall of Seva)">
+        <input id="dPhone" type="tel" placeholder="Phone / WhatsApp">
+        <input id="dEmail" type="email" placeholder="Email (for your 80G receipt)">
+      </div>
+      <label class="d80g"><input type="checkbox" id="d80g" checked> I'd like an 80G tax-exemption receipt</label>
+      <button class="btn btn-primary dpay" id="dPay">Proceed to Donate ₹101</button>
+      <div class="dsecure"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg> Secure payment via Razorpay · UPI, cards &amp; netbanking</div>
+      </div>
+    </div>
+  </div></div></section>
+
+  <section class="bless reveal"><div class="wrap"><div class="bw">
+    <div class="lotus">🪔</div>
+    <blockquote>"He who builds a temple for the divine, and shelters a cow, dwells in the heavens for as many years as there are grains of dust in the earth he gave."</blockquote>
+    <cite>From the Skanda Purana</cite>
+  </div></div></section>
+
+ </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html" data-route="/" aria-label="Devanshya home"><img class="mark" src="images/logo_icon.png" alt="" aria-hidden="true"><span><span class="name">Devanshya</span><span class="sub">Darshan · Puja · Prasad</span></span></a>
+        <p>A digital temple platform for discovering India's sacred places, understanding their traditions, and offering authentic worship from anywhere.</p>
+        <div class="foot-lang">Available in English · हिन्दी · ગુજરાતી — more languages coming.</div>
+      </div>
+      <div class="foot-col"><h4>Explore</h4><a href="temples.html" data-route="/temples">Temples</a><a href="watch.html" data-route="/watch">Watch Originals</a><a href="prasad.html" data-route="/prasad">Prasad</a></div>
+      <div class="foot-col"><h4>Services</h4><a href="pujas.html" data-route="/pujas">Book a Puja</a><a href="offer-puja.html" data-route="/offer">Offer Chadhava</a><a href="prasad.html" data-route="/prasad">Puja Store</a></div>
+      <div class="foot-col"><h4>Devanshya</h4><a href="seva.html" data-route="/seva">Seva &amp; Donation</a><a href="our-promise.html" data-route="/promise">Our Promise</a><a href="temples.html" data-route="/temples">Ahmedabad First</a><a href="our-promise.html" data-route="/promise">Claims Policy</a></div>
+    </div>
+    <div class="foot-bot"><span>© 2026 Devanshya · devanshya.com · Faith. Wherever You Are.</span><span>A puja is a devotional act, not a guarantee of any outcome.</span></div>
+  </div>
+</footer>
+
+<!-- floating guidance -->
+<button class="fab" id="fabGuide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3a7 7 0 00-4 12.7V18a1 1 0 001 1h6a1 1 0 001-1v-2.3A7 7 0 0012 3z" stroke-linejoin="round"/><path d="M9.5 21h5" stroke-linecap="round"/></svg><span>Need Guidance?</span></button>
+
+<!-- booking modal -->
+<div class="modal" id="bookModal" role="dialog" aria-modal="true" aria-labelledby="bookTitle">
+  <div class="modal-scrim" data-close></div>
+  <div class="modal-card wide">
+    <button class="modal-close" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></button>
+    <div id="bookBody"></div>
+  </div>
+</div>
+
+<!-- consultation modal -->
+<div class="modal" id="guideModal" role="dialog" aria-modal="true" aria-labelledby="guideTitle">
+  <div class="modal-scrim" data-close></div>
+  <div class="modal-card">
+    <button class="modal-close" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></button>
+    <div id="guideBody">
+      <h2 id="guideTitle">Need more Guidance?</h2>
+      <p class="sub">Get a free 1-on-1 consultation with our team to find the right puja for your need.</p>
+      <div class="field"><label for="gName">Your Name</label><input id="gName" type="text" placeholder="Enter your name" autocomplete="name"></div>
+      <div class="field"><label for="gPhone">Phone Number</label><input id="gPhone" type="tel" placeholder="+91 98XXX XXXXX" autocomplete="tel"></div>
+      <button class="btn btn-maroon" id="gSubmit" style="width:100%"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:18px;height:18px"><path d="M6.6 10.8a12 12 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11 11 0 003.4.55 1 1 0 011 1V20a1 1 0 01-1 1A16 16 0 013 6a1 1 0 011-1h3.3a1 1 0 011 1 11 11 0 00.55 3.4 1 1 0 01-.24 1z" stroke-linejoin="round"/></svg> Request Free Callback</button>
+      <div class="foot-note">No spam • Free consultation • Expert advice</div>
+    </div>
+  </div>
+</div>
+
+<!-- prasad order modal -->
+<div class="modal" id="prasadModal" role="dialog" aria-modal="true" aria-labelledby="prasadTitle">
+  <div class="modal-scrim" data-close></div>
+  <div class="modal-card wide">
+    <button class="modal-close" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></button>
+    <div id="prasadBody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var IMG={sec_garden:'images/sec_garden.jpg',sec_room:'images/sec_room.jpg',sec_gaushala:'images/sec_gaushala.jpg',hero:'images/hero.jpg',
+    t_jagannath:'images/t_jagannath.jpg',t_camphanuman:'images/t_camp-hanuman.jpg',t_bhadrakali:'images/t_bhadrakali.jpg',
+    t_kalupurswaminarayan:'images/t_kalupur-swaminarayan.jpg',t_iskcon:'images/t_iskcon.jpg',t_bapsshahibaug:'images/t_baps-shahibaug.jpg',
+    t_vaishnodevi:'images/t_vaishnodevi.jpg',t_kamnathmahadev:'images/t_kamnath-mahadev.jpg',t_nilkanthmahadev:'images/t_nilkanth-mahadev.jpg',t_ganeshmandir:'images/t_ganesh-mandir.jpg',
+    p_rudrabhishek:'images/p_rudrabhishek.jpg',p_mahamrityunjaya:'images/p_mahamrityunjaya.jpg',p_lakshmiganesh:'images/p_lakshmiganesh.jpg',
+    p_satyanarayan:'images/p_satyanarayan.jpg',p_sundarkand:'images/p_sundarkand.jpg',p_grihapravesh:'images/p_grihapravesh.jpg',
+    p_durga:'images/p_durga.jpg',p_navagraha:'images/p_navagraha.jpg',p_ganeshpuja:'images/p_ganeshpuja.jpg',
+    sec_offer:'images/sec_offer.jpg',sec_prasad:'images/sec_prasad.jpg',sec_watch:'images/sec_watch.jpg'};
+  function timg(id){return IMG['t_'+id.replace(/-/g,'')];}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+  var PRAY=[['Financial','M12 3v18M8 7h6a2.5 2.5 0 010 5H9m-1 3h6'],['Career','M4 20V9l8-5 8 5v11M9 20v-6h6v6'],['Marriage','M12 20s-7-4.3-7-9.5A3.8 3.8 0 0112 8a3.8 3.8 0 017 2.5C19 15.7 12 20 12 20z'],['Family','M8 9a2.4 2.4 0 100-.01M16 9a2.4 2.4 0 100-.01M3.5 19c.4-2.8 2.3-4.3 4.5-4.3M16 14.7c2.2 0 4.1 1.5 4.5 4.3'],['Health','M12 21c5-3 8-6 8-10a4 4 0 00-8-.6A4 4 0 004 11c0 4 3 7 8 10z'],['Education','M3 7l9-4 9 4-9 4zM7 9v5c0 1.5 2.2 3 5 3s5-1.5 5-3V9'],['Home','M4 11l8-6 8 6v8a1 1 0 01-1 1H5a1 1 0 01-1-1zM10 20v-5h4v5'],['Protection','M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z'],['Ancestors','M12 3c3 2.5 4.5 5.5 4.5 8.5A4.5 4.5 0 0112 16a4.5 4.5 0 01-4.5-4.5C7.5 8.5 9 5.5 12 3zM8 20h8'],['Spiritual','M12 4c4 0 7 3 7 7 0 5-7 9-7 9s-7-4-7-9c0-4 3-7 7-7z'],['Business','M4 20V9l8-5 8 5v11M9 20v-6h6v6'],['Festival','M12 4c4 0 7 3 7 7 0 5-7 9-7 9s-7-4-7-9c0-4 3-7 7-7z']];
+
+  var PUJAS=[
+    {id:'rudrabhishek',name:'Rudrabhishek',cat:'Shiva',from:501,purpose:'Traditionally performed seeking well-being, peace and the removal of obstacles.'},
+    {id:'mahamrityunjaya',name:'Maha Mrityunjaya Jaap',cat:'Well-being',from:1101,purpose:'The great life-restoring mantra, recited from 108 up to 1,25,000 japa.'},
+    {id:'lakshmiganesh',name:'Lakshmi Ganesh Puja',cat:'Prosperity',from:1101,purpose:'Traditionally performed for prosperity and auspicious beginnings.'},
+    {id:'satyanarayan',name:'Satyanarayan Katha',cat:'Family',from:2101,purpose:"The householder's katha of gratitude and blessing, at your home or on your behalf."},
+    {id:'sundarkand',name:'Sundarkand Path',cat:'Hanuman',from:1101,purpose:'A complete recitation traditionally offered for courage and protection.'},
+    {id:'grihapravesh',name:'Griha Pravesh',cat:'Home',from:2501,purpose:'The traditional house-warming ceremony, performed at your new home.'},
+    {id:'durga',name:'Durga Saptashati Path',cat:'Devi',from:1501,purpose:'Recitation of the Durga Saptashati, offered during Navratri and for strength.'},
+    {id:'navagraha',name:'Navagraha Shanti',cat:'Traditional astrology',from:2101,purpose:'Rituals associated in tradition with the nine planetary influences.'},
+    {id:'ganeshpuja',name:'Ganesh Puja',cat:'Auspicious beginnings',from:751,purpose:'For a new home, shop, business or venture — for auspicious beginnings.'}
+  ];
+  var pujaById={}; PUJAS.forEach(function(p){pujaById[p.id]=p;});
+
+  var SERIES=[['Documentary','Temple Stories','sec_watch'],['Travel','Devanshya Yatra','hero'],['Interview','Meet the Priest','sec_prasad'],['Educational','Why We Perform This Puja','p_rudrabhishek'],['Discovery',"India's Forgotten Temples",'t_bhadrakali'],['Shorts','60 Seconds of Darshan','p_lakshmiganesh']];
+
+  var TEMPLES=[
+    {id:'jagannath',name:'Shree Jagannath Temple',deity:'Lord Jagannath',short:'Jagannath',area:'Jamalpur, Ahmedabad',tag:'Rath Yatra',partner:true,
+     blurb:'A ~450-year-old heart of the old city, famed for its Rath Yatra, temple kitchen and gaushala.',
+     about:['One of Ahmedabad’s major spiritual sites, the Jagannath Temple at Jamalpur is celebrated for its annual Rath Yatra, when the deities are drawn through the old city in towering chariots.','The complex includes a kitchen serving free food, a dharamshala and a gaushala — a living institution as much as a temple.'],
+     timings:[['Morning darshan','5:30 – 11:30 AM'],['Evening darshan','5:00 – 9:00 PM'],['Mangala Aarti','5:30 AM'],['Sandhya Aarti','7:00 PM']],
+     pujas:[['Mangala Aarti Darshan','Darshan',0,'Guided darshan & sankalp'],['Satyanarayan Katha','Family',2101,'Temple or your home'],['Rath Yatra Seva','Festival',0,'Seasonal, during the yatra'],['Jagannath Prasad Box','Prasad',351,'Khichdi bhog, couriered']],
+     reach:{Rail:'Ahmedabad Jn (~4 km)',Air:'SVPI Airport (~9 km)',Road:'Jamalpur, walled city',Parking:'Nearby paid parking'}},
+    {id:'camp-hanuman',name:'Camp Hanuman Temple',deity:'Lord Hanuman',short:'Hanuman',area:'Shahibaug (Camp), Ahmedabad',tag:'Tue & Sat devotion',
+     blurb:'A much-loved Hanuman temple with strong local devotion and heavy Tuesday and Saturday footfall.',
+     about:['A centre of Hanuman devotion in the Camp area, drawing large crowds on Tuesdays and Saturdays for darshan and sindoor-chola offerings.','The Hanuman Chalisa and Sundarkand make it a natural home for Hanuman seva.'],
+     timings:[['Morning darshan','5:30 – 12:00 PM'],['Evening darshan','4:00 – 9:30 PM'],['Aarti','6:30 AM & 7:30 PM'],['Busiest','Tue & Sat']],
+     pujas:[['Hanuman Chalisa Path','Hanuman',351,'Single or group path'],['Sundarkand Path','Hanuman',1101,'Group recitation'],['Sindoor Chola Offering','Chadhava',501,'On your behalf'],['Bajrang Baan Path','Hanuman',351,'Protection path']],
+     reach:{Rail:'Ahmedabad Jn (~5 km)',Air:'SVPI Airport (~6 km)',Road:'Shahibaug / Camp',Parking:'Street & lot parking'}},
+    {id:'bhadrakali',name:'Bhadrakali Temple',deity:'Goddess Bhadrakali',short:'Devi',area:'Bhadra Fort, Ahmedabad',tag:'City guardian',
+     blurb:'The guardian deity of old Ahmedabad, woven into the founding story of the walled city.',
+     about:['Set within the historic Bhadra precinct, the Bhadrakali temple honours the guardian goddess associated with the old city’s origins.','Devi worship rises to a peak during Navratri, with chunri and jyot offerings and Durga path.'],
+     timings:[['Morning darshan','6:00 – 11:30 AM'],['Evening darshan','4:30 – 9:00 PM'],['Aarti','7:00 AM & 7:30 PM'],['Navratri','Extended hours']],
+     pujas:[['Devi Puja','Devi',1101,'Individual sankalp'],['Durga Saptashati Path','Devi',1501,'Group recitation'],['Navratri Chunri Offering','Chadhava',501,'Flowers, chunri, jyot'],['Chandi Havan','Devi',3101,'Dedicated havan']],
+     reach:{Rail:'Ahmedabad Jn (~3 km)',Air:'SVPI Airport (~9 km)',Road:'Bhadra Fort square',Parking:'Bhadra plaza parking'}},
+    {id:'kalupur-swaminarayan',name:'Shree Swaminarayan Mandir, Kalupur',deity:'Bhagwan Swaminarayan',short:'Swaminarayan',area:'Kalupur, Ahmedabad',tag:'World’s first, 1822',partner:true,
+     blurb:'The world’s first Swaminarayan temple (1822), and the start of the city’s heritage walk.',
+     about:['Consecrated in 1822, the Kalupur mandir is the first Swaminarayan temple in the world, famed for its intricately carved and painted woodwork.','The city’s heritage walk begins here — which is why we approach it first as a temple to document and celebrate.'],
+     timings:[['Morning darshan','6:00 – 11:00 AM'],['Evening darshan','4:00 – 7:30 PM'],['Mangala Aarti','6:00 AM'],['Sandhya Aarti','7:00 PM']],
+     pujas:[['Darshan & Aarti','Darshan',0,'Guided darshan'],['Abhishek','Seva',0,'In coordination with temple'],['Annakut Seva','Festival',0,'Festival offering']],
+     reach:{Rail:'Ahmedabad Jn (~2 km)',Air:'SVPI Airport (~9 km)',Road:'Kalupur, walled city',Parking:'Limited; nearby lots'}},
+    {id:'iskcon',name:'ISKCON Ahmedabad',deity:'Lord Krishna',short:'Krishna',area:'Satellite, Ahmedabad',tag:'Janmashtami',partner:true,
+     blurb:'A large Krishna-devotee community, radiant during Janmashtami, with beautiful sringar darshan.',
+     about:['The ISKCON temple in Satellite gathers a large Krishna-devotee audience for daily aarti, kirtan and sringar darshan.','Janmashtami here is a highlight of the city’s devotional calendar.'],
+     timings:[['Morning darshan','4:30 – 1:00 PM'],['Evening darshan','4:00 – 9:00 PM'],['Sringar Aarti','7:15 AM'],['Sandhya Aarti','7:00 PM']],
+     pujas:[['Sringar Darshan','Darshan',0,'Guided darshan'],['Tulsi Archana','Seva',251,'On your behalf'],['Janmashtami Seva','Festival',0,'Festival offering'],['Bhagavad Gita Daan','Daan',151,'Sponsor a scripture']],
+     reach:{Rail:'Ahmedabad Jn (~9 km)',Air:'SVPI Airport (~14 km)',Road:'Satellite Road',Parking:'Ample on-site parking'}},
+    {id:'baps-shahibaug',name:'BAPS Swaminarayan Mandir, Shahibaug',deity:'Bhagwan Swaminarayan',short:'Swaminarayan',area:'Shahibaug, Ahmedabad',tag:'Major institution',partner:true,
+     blurb:'A major BAPS spiritual institution, known for its architecture and community.',
+     about:['The BAPS mandir at Shahibaug is a significant spiritual and cultural institution, with serene grounds and finely worked architecture.','We approach it first as a place to document and share — its history, community and daily darshan.'],
+     timings:[['Morning darshan','7:30 – 11:30 AM'],['Evening darshan','4:00 – 8:30 PM'],['Mangala Aarti','7:30 AM'],['Sandhya Aarti','6:45 PM']],
+     pujas:[['Darshan & Aarti','Darshan',0,'Guided darshan'],['Abhishek','Seva',0,'In coordination with temple']],
+     reach:{Rail:'Ahmedabad Jn (~5 km)',Air:'SVPI Airport (~6 km)',Road:'Shahibaug',Parking:'On-site parking'}},
+    {id:'vaishnodevi',name:'Vaishnodevi Temple, SG Highway',deity:'Mata Vaishno Devi',short:'Mata',area:'SG Highway, Ahmedabad',tag:'Family favourite',
+     blurb:'A popular replica shrine on SG Highway, beloved by families and lively through Navratri.',
+     about:['The Vaishnodevi temple on SG Highway recreates the spirit of the hill shrine and is a favourite family darshan on the western edge of the city.','Navratri brings garba, jyot and chunri offerings.'],
+     timings:[['Morning darshan','6:00 – 12:00 PM'],['Evening darshan','4:00 – 9:00 PM'],['Aarti','7:00 AM & 7:30 PM'],['Navratri','Extended hours']],
+     pujas:[['Mata Puja','Devi',1101,'Individual sankalp'],['Navratri Puja','Festival',1501,'Seasonal seva'],['Chunri & Jyot Offering','Chadhava',501,'On your behalf']],
+     reach:{Rail:'Ahmedabad Jn (~12 km)',Air:'SVPI Airport (~16 km)',Road:'SG Highway',Parking:'Ample on-site parking'}},
+    {id:'kamnath-mahadev',name:'Kamnath Mahadev',deity:'Lord Shiva',short:'Shiva',area:'Ahmedabad',tag:'Shiva rituals',
+     blurb:'A Shiva temple that anchors our most important ritual category — abhishek and Somvar seva.',
+     about:['Kamnath Mahadev is a well-loved Shiva temple, busiest on Mondays and through the month of Shravan.','It gives Devanshya a strong home for Rudrabhishek, Somvar puja and Maha Mrityunjaya jaap.'],
+     timings:[['Morning darshan','5:30 – 12:00 PM'],['Evening darshan','5:00 – 9:00 PM'],['Aarti','6:00 AM & 7:00 PM'],['Busiest','Mondays & Shravan']],
+     pujas:[['Rudrabhishek','Shiva',501,'Shared or dedicated'],['Somvar Puja','Shiva',351,'Monday seva'],['Maha Mrityunjaya Jaap','Well-being',1101,'108 to 1,25,000 japa'],['Bilva Archana','Chadhava',251,'On your behalf']],
+     reach:{Rail:'Ahmedabad Jn (~7 km)',Air:'SVPI Airport (~10 km)',Road:'Ahmedabad',Parking:'Street parking'}},
+    {id:'nilkanth-mahadev',name:'Nilkanth Mahadev',deity:'Lord Shiva',short:'Shiva',area:'Old city, Ahmedabad',tag:'Old Shiva tradition',
+     blurb:'An older Shiva tradition in Ahmedabad, quietly devotional and rich in local history.',
+     about:['Nilkanth Mahadev carries an older thread of Shiva worship in the city, with a calm, traditional atmosphere.','It is well suited to Rudra recitations and Shivratri abhishek.'],
+     timings:[['Morning darshan','6:00 – 11:30 AM'],['Evening darshan','5:00 – 8:30 PM'],['Aarti','6:30 AM & 7:00 PM'],['Shivratri','Night-long darshan']],
+     pujas:[['Rudrabhishek','Shiva',501,'Shared or dedicated'],['Laghu Rudra','Shiva',3101,'Extended recitation'],['Shivratri Abhishek','Festival',0,'Maha Shivratri seva']],
+     reach:{Rail:'Ahmedabad Jn (~3 km)',Air:'SVPI Airport (~9 km)',Road:'Old city',Parking:'Limited street parking'}},
+    {id:'ganesh-mandir',name:'Siddhi Vinayak Ganesh Temple',deity:'Lord Ganesha',short:'Ganesha',area:'Ahmedabad',tag:'Auspicious beginnings',
+     blurb:'A locally important Ganesh temple — a natural home for new-beginning pujas.',
+     about:['This Ganesh temple is a natural first stop for auspicious beginnings — a new home, shop, business or venture.','Ganesh Chaturthi and Sankashti days bring devotees for darshan and modak offerings.'],
+     timings:[['Morning darshan','6:00 – 12:00 PM'],['Evening darshan','4:00 – 9:00 PM'],['Aarti','7:00 AM & 7:30 PM'],['Sankashti','Extended hours']],
+     pujas:[['Ganesh Puja','Ganesha',751,'For auspicious beginnings'],['Sankashti Puja','Ganesha',501,'Monthly Sankashti seva'],['Business Opening Puja','Business',2101,'At your shop or office'],['Ganesh Chaturthi Seva','Festival',0,'Festival offering']],
+     reach:{Rail:'Ahmedabad Jn (~6 km)',Air:'SVPI Airport (~11 km)',Road:'Ahmedabad',Parking:'Nearby parking'}}
+  ];
+  var byId={}; TEMPLES.forEach(function(t){byId[t.id]=t;});
+
+  /* prasad per temple — base price (delivery within India included), min ₹599 */
+  var PRASAD_INFO={
+    jagannath:{name:'Jagannath Khichdi Mahaprasad',price:599},
+    'camp-hanuman':{name:'Hanuman Sindoor-Chola Prasad',price:599},
+    bhadrakali:{name:'Bhadrakali Devi Prasad & Chunri',price:751},
+    'kalupur-swaminarayan':{name:'Swaminarayan Mandir Prasad',price:651},
+    iskcon:{name:'Krishna Bhog Prasad',price:699},
+    'baps-shahibaug':{name:'BAPS Swaminarayan Prasad',price:651},
+    vaishnodevi:{name:'Vaishnodevi Mata Prasad & Chunri',price:751},
+    'kamnath-mahadev':{name:'Kamnath Shiv Bilva Prasad',price:599},
+    'nilkanth-mahadev':{name:'Nilkanth Shiv Prasad',price:599},
+    'ganesh-mandir':{name:'Ganesh Modak Prasad',price:651}
+  };
+  function prasadOf(id){return PRASAD_INFO[id]||{name:'Temple Prasad Box',price:599};}
+
+  function money(n){return '₹'+n.toLocaleString('en-IN');}
+
+  /* ---- renderers ---- */
+  function templeCard(t){
+    return '<a class="ecard" href="temple-'+t.id+'.html">'
+      +'<div class="ph"><img src="'+timg(t.id)+'" alt="'+esc(t.name)+'" loading="lazy"><span class="badge">'+esc(t.tag)+'</span><span class="deity">'+esc(t.short)+'</span></div>'
+      +'<div class="body"><h3>'+esc(t.name)+'</h3><span class="loc">'+esc(t.area)+' · '+esc(t.deity)+'</span>'
+      +'<p class="desc">'+esc(t.blurb)+'</p><div class="foot"><span class="go">View temple &amp; pujas →</span></div></div></a>';
+  }
+  function pujaCard(p){
+    return '<a class="ecard" href="puja-'+p.id+'.html">'
+      +'<div class="ph"><img src="'+IMG['p_'+p.id]+'" alt="'+esc(p.name)+'" loading="lazy"><span class="badge">'+esc(p.cat)+'</span></div>'
+      +'<div class="body"><h3>'+esc(p.name)+'</h3><p class="desc">'+esc(p.purpose)+'</p>'
+      +'<div class="foot"><span class="price">From '+money(p.from)+'<small>at temple or home</small></span><span class="go">View &amp; book →</span></div></div></a>';
+  }
+  function prasadCard(t){
+    var pr=prasadOf(t.id);
+    return '<div class="ecard" data-prasad="'+t.id+'" tabindex="0" role="button">'
+      +'<div class="ph"><img src="'+timg(t.id)+'" alt="'+esc(t.name)+'" loading="lazy"><span class="badge">Prasad</span><span class="deity">'+esc(t.short)+'</span></div>'
+      +'<div class="body"><h3>'+esc(t.name)+'</h3><span class="loc">'+esc(pr.name)+'</span>'
+      +'<p class="desc">Blessed prasad, packed and couriered across India — delivery included.</p>'
+      +'<div class="foot"><span class="price">'+money(pr.price)+'<small>per packet · delivery included</small></span><span class="go">Order prasad →</span></div></div></div>';
+  }
+  function render(){
+    var pg=document.getElementById('prayGrid');
+    if(pg) pg.innerHTML=PRAY.map(function(x){return '<a class="pray" href="pujas.html"><span class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="'+x[1]+'"/></svg></span><h3>'+esc(x[0])+'</h3></a>';}).join('');
+    var ptg=document.getElementById('prasadTempleGrid'); if(ptg) ptg.innerHTML=TEMPLES.map(prasadCard).join('');
+    var tg=document.getElementById('templeGrid'); if(tg) tg.innerHTML=TEMPLES.map(templeCard).join('');
+    var htg=document.getElementById('homeTempleGrid'); if(htg) htg.innerHTML=[TEMPLES[7],TEMPLES[0],TEMPLES[9]].map(templeCard).join('');
+    var pjg=document.getElementById('pujaGrid'); if(pjg) pjg.innerHTML=PUJAS.map(pujaCard).join('');
+    var hpg=document.getElementById('homePujaGrid'); if(hpg) hpg.innerHTML=[PUJAS[0],PUJAS[2],PUJAS[4]].map(pujaCard).join('');
+    var sg=document.getElementById('seriesGrid'); if(sg) sg.innerHTML=SERIES.map(function(x){return '<div class="svid"><div class="thumb"><img src="'+IMG[x[2]]+'" alt="'+esc(x[1])+'" loading="lazy"><div class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div></div><div class="cap"><span class="k">'+esc(x[0])+'</span><h3>'+esc(x[1])+'</h3></div></div>';}).join('');
+    // fill data-img placeholders (e.g. Seva page) from IMG map
+    document.querySelectorAll('img[data-img]').forEach(function(im){var k=im.getAttribute('data-img'); if(IMG[k]) im.src=IMG[k];});
+    // Seva: cow herd (21)
+    var herd=document.getElementById('herd');
+    if(herd){var cow='<svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M9 18c-1-2-2-5-1-7 1 2 2 2 3 2M31 18c1-2 2-5 1-7-1 2-2 2-3 2" stroke="#8C2B22" stroke-width="1.6" stroke-linecap="round"/><path d="M10 16c0-4 4-7 10-7s10 3 10 7c0 2 1 2 1 5 0 5-5 9-11 9s-11-4-11-9c0-3 1-3 1-5z" fill="#F6C88A" stroke="#8C2B22" stroke-width="1.5"/><ellipse cx="20" cy="27" rx="5" ry="3.6" fill="#FBE7CC" stroke="#8C2B22" stroke-width="1.1"/><circle cx="17" cy="21" r="1.1" fill="#5A2016"/><circle cx="23" cy="21" r="1.1" fill="#5A2016"/></svg>';var out='';for(var i=0;i<21;i++)out+=cow;herd.innerHTML=out;}
+  }
+
+  function renderDetail(t){
+    var el=document.getElementById('templeDetail'); if(!el) return;
+    var pr=prasadOf(t.id);
+    var timings=t.timings.map(function(r){return '<div class="timing"><span>'+esc(r[0])+'</span><span>'+esc(r[1])+'</span></div>';}).join('');
+    var reach=Object.keys(t.reach).map(function(k){return '<div class="reach-line"><b>'+esc(k)+'</b><span>'+esc(t.reach[k])+'</span></div>';}).join('');
+    var offers=t.pujas.map(function(p){
+      var price=p[2]===0?'<span class="price">Darshan<small>guided visit</small></span>':'<span class="price">From '+money(p[2])+'<small>'+esc(p[3])+'</small></span>';
+      var book='<button class="btn btn-maroon btn-sm" data-open-puja="'+ (pujaById[slug(p[0])]?slug(p[0]):'') +'" data-puja-name="'+esc(p[0])+'" data-temple="'+esc(t.name)+'" data-from="'+p[2]+'">Book ▸</button>';
+      return '<div class="offer"><div class="hi">'+esc(p[1])+'</div><h4>'+esc(p[0])+'</h4><p>'+esc(p[3])+'</p><div class="foot">'+price+book+'</div></div>';
+    }).join('');
+    var partnerNote=t.partner?'<div class="note-strip">Content partner — we document and promote this temple first. Darshan and seva are offered in coordination with the temple trust; bookable pujas are added only where the trust and priests welcome them.</div>':'';
+    el.innerHTML=''
+      +'<section class="detail-hero"><img src="'+timg(t.id)+'" alt="'+esc(t.name)+'"><div class="sc"></div>'
+      +'<div class="wrap"><a class="crumb" href="temples.html">← All Ahmedabad temples</a><div class="badge">'+esc(t.tag)+'</div><h1>'+esc(t.name)+'</h1><div class="meta">'+esc(t.area)+' · '+esc(t.deity)+'</div>'
+      +'<div class="cta"><button class="btn btn-primary" data-open-puja="" data-puja-name="'+esc(t.pujas[0][0])+'" data-temple="'+esc(t.name)+'" data-from="'+t.pujas[0][2]+'">Book a Puja</button><a class="btn btn-ghost" href="watch.html">Watch documentary</a></div></div></section>'
+      +'<section class="detail-body"><div class="wrap detail-grid"><div class="detail-main">'
+      +'<section><h2>About this temple</h2>'+t.about.map(function(p){return '<p class="about">'+esc(p)+'</p>';}).join('')+'</section>'
+      +'<section><h2>Available pujas &amp; offerings</h2><div class="offer-grid">'+offers+'</div>'+partnerNote+'</section>'
+      +'<section><h2>Prasad delivery</h2><div class="prasad-card" style="border-radius:16px"><div class="pname">'+esc(pr.name)+'</div><div class="pfrom">'+money(pr.price)+' <small>per packet · India delivery included</small></div><p>Order one or more packets of this temple’s blessed prasad — packed and couriered to your home with tracking. International delivery is calculated separately.</p><button class="btn btn-maroon" data-prasad="'+t.id+'">Order Prasad Delivery</button></div></section></div>'
+      +'<aside><div class="prasad-card"><h3>Prasad delivery</h3><div class="pname">'+esc(pr.name)+'</div><div class="pfrom">'+money(pr.price)+' <small>per packet · India delivery included</small></div><p>Blessed prasad, packed and couriered to your home with tracking.</p><button class="btn btn-maroon" data-prasad="'+t.id+'">Order Prasad</button></div>'
+      +'<div class="info-card"><h3>Darshan &amp; Aarti</h3>'+timings+'</div>'
+      +'<div class="info-card"><h3>How to reach</h3>'+reach+'</div>'
+      +'<div class="info-card" style="text-align:center"><h3>Offer from anywhere</h3><p style="font-size:.9rem;color:var(--ink-soft);margin:.2rem 0 1rem">At the temple, by a priest at your home, or on your behalf — with video and prasad.</p><button class="btn btn-maroon" style="width:100%" data-open-puja="" data-puja-name="'+esc(t.pujas[0][0])+'" data-temple="'+esc(t.name)+'" data-from="'+t.pujas[0][2]+'">Book a Puja</button></div>'
+      +'</aside></div></section>';
+  }
+  function slug(s){return s.toLowerCase().replace(/[^a-z]/g,'');}
+
+  /* ---- puja detail content ---- */
+  var PROMISE=[['Experienced pandits','From our verified, KYC-checked network','M12 3a7 7 0 00-4 12.7V18a1 1 0 001 1h6a1 1 0 001-1v-2.3A7 7 0 0012 3z'],
+    ['Vedic standards','Rituals performed as tradition prescribes','M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z'],
+    ['Genuine samagri','Quality materials, included in your package','M4 9h16v8a2 2 0 01-2 2H6a2 2 0 01-2-2z'],
+    ['Personal guidance','A team member helps you choose &amp; prepare','M8 10h8M8 14h5M21 12a9 9 0 01-13 8l-5 1 1-5a9 9 0 1117-4z'],
+    ['Punctual &amp; tracked','Clear status from booking to prasad','M12 8v4l3 2M21 12a9 9 0 11-18 0 9 9 0 0118 0z'],
+    ['Honest promises','We describe tradition — never guaranteed outcomes','M9 12l2 2 4-4M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z']];
+  var FEATURES=[['Verified, experienced priest',[1,1,1]],['All samagri (materials) included',[1,1,1]],['Sankalp in your name &amp; gotra',[1,1,1]],['Private recorded video',[1,1,1]],['Prasad couriered to your home',[1,1,1]],['Up to 5 family members in sankalp',[0,1,1]],['Performed exclusively for you',[0,0,1]],['Live video, where permitted',[0,0,1]],['Brahmin bhojan seva',[0,0,1]]];
+  function defProc(name){return [['Sankalp','The priest recites your name, gotra and prayer, dedicating the ritual to your intention.'],['Ganapati &amp; Kalash Puja','Lord Ganesha is invoked for an auspicious start and the sacred kalash is established.'],['Main ritual','The heart of the '+esc(name)+' is performed with the prescribed mantras and offerings.'],['Aarti &amp; Prasad','The ritual concludes with aarti; prasad is offered and packed for you.'],['Video &amp; delivery','You receive a private video of the ritual and your prasad is dispatched.']];}
+  var DEF_INC=['A verified, experienced priest','All required samagri (materials)','Sankalp in your name &amp; gotra','A private recorded video','Temple / home prasad, couriered','Booking ID &amp; status tracking'];
+  function defFaqs(name){return [
+    ['Do I need to arrange any items myself?','No. For temple and priest-performed options we arrange all the samagri. If you pick a "priest only" package, we send you a simple checklist in advance.'],
+    ['Can the puja be done if I can’t attend?','Yes. Choose "On my behalf" and the priest performs the '+esc(name)+' with your sankalp, then sends you the private video and prasad.'],
+    ['How is the priest chosen?','We assign a verified priest experienced in this specific ritual, from our KYC-checked network — named on your booking.'],
+    ['Will I get proof the puja was performed?','Yes — wherever permitted you receive a private video showing your sankalp, along with your prasad and a booking status you can follow.'],
+    ['Can I choose the date or muhurat?','You can request a preferred date or an auspicious muhurat; our team confirms availability with you on WhatsApp.'],
+    ['Can I cancel or reschedule?','Yes, before a priest is assigned. Our team will help you move to a suitable date.']];}
+  var PDX={
+    rudrabhishek:{deity:'Lord Shiva',duration:'1–2 hours',about:'Rudrabhishek is one of the most revered Vedic rituals dedicated to Lord Shiva in his Rudra form, in which the Shivling is bathed (abhishek) with sacred substances while the Rudra mantras are chanted.',significance:['Traditionally performed to seek Lord Shiva’s grace for peace, health and the removal of obstacles.','The abhishek is offered with water, milk, panchamrit and bilva leaves as the Rudram is recited.','Held especially auspicious on Mondays, through Shravan, and on Maha Shivratri.'],benefits:['Traditionally sought for well-being and inner peace','Associated in tradition with relief from graha doshas','Performed seeking health and protection of the family','Offered for success and the removal of obstacles'],whenTo:'Mondays, the month of Shravan, Pradosh and Maha Shivratri are considered especially auspicious.'},
+    mahamrityunjaya:{deity:'Lord Shiva',duration:'By jaap count',about:'The Maha Mrityunjaya Jaap is the repeated recitation of the great “conquering-death” mantra of Lord Shiva, performed by priests in traditional counts, often with a havan.',significance:['Traditionally performed seeking health, longevity and freedom from fear.','Recited in counts from 108 up to 1,25,000 japa, with havan where chosen.','Regarded in tradition as a deeply protective and healing recitation.'],benefits:['Performed seeking good health and recovery','Traditionally for courage and freedom from fear','Offered for the protection of loved ones','Associated with peace of mind'],whenTo:'Often performed on Mondays, during times of difficulty, and on Shiva festivals.'},
+    lakshmiganesh:{deity:'Lakshmi &amp; Ganesha',duration:'1–2 hours',about:'Lakshmi Ganesh Puja honours Goddess Lakshmi and Lord Ganesha together — the giver of prosperity and the remover of obstacles — a favourite for homes and new ventures.',significance:['Traditionally performed for prosperity, abundance and auspicious beginnings.','Ganesha is invoked first for an obstacle-free start, then Lakshmi for wealth.','Especially popular at Diwali, Dhanteras and shop or business openings.'],benefits:['Traditionally sought for prosperity and abundance','Performed for auspicious new beginnings','Offered for success in business and work','Associated with harmony at home'],whenTo:'Diwali, Dhanteras, Akshaya Tritiya and new-venture openings are especially popular.'},
+    satyanarayan:{deity:'Lord Vishnu',duration:'2–3 hours',about:'The Satyanarayan Katha is a beloved householder ritual of gratitude, in which the katha of Lord Satyanarayan is recited and sacred prasad is shared with family and guests.',significance:['Traditionally performed to give thanks and seek blessings for the family.','Commonly held on Purnima, after milestones, or on the fulfilment of a wish.','The sharing of sheera / panjiri prasad is central to the ritual.'],benefits:['Performed in gratitude and for family well-being','Traditionally for harmony and blessings in the home','Offered on milestones and new beginnings','Associated with peace and contentment'],whenTo:'Purnima (full-moon) days, anniversaries and housewarmings are traditional.'},
+    sundarkand:{deity:'Hanuman / Rama',duration:'2–3 hours',about:'Sundarkand Path is the complete recitation of the Sundarkand — the fifth book of the Ramcharitmanas — celebrating Hanuman’s devotion, courage and service.',significance:['Traditionally offered for courage, protection and steadfast devotion.','Popular on Tuesdays and Saturdays, the days associated with Hanuman.','Often performed as a group path, concluding with aarti and prasad.'],benefits:['Traditionally sought for courage and confidence','Performed for protection from difficulties','Offered for devotion and mental strength','Associated with the removal of obstacles'],whenTo:'Tuesdays and Saturdays, and Hanuman Jayanti, are especially auspicious.'},
+    grihapravesh:{deity:'Vastu &amp; Ganesha',duration:'2–4 hours',about:'Griha Pravesh is the traditional house-warming ceremony performed on entering a new home, invoking auspicious energies and Vastu harmony before the family settles in.',significance:['Traditionally performed to bless a new home and its residents.','Includes Ganesh puja, Vastu shanti and an auspicious first entry.','Best performed on a chosen muhurat before moving in.'],benefits:['Performed for a peaceful, harmonious home','Traditionally for Vastu balance and positivity','Offered for the well-being of the household','Associated with auspicious beginnings'],whenTo:'On an auspicious muhurat, typically before the family moves in.'},
+    durga:{deity:'Goddess Durga',duration:'By path length',about:'Durga Saptashati Path is the recitation of the 700 verses in praise of Goddess Durga, invoking her protective and empowering grace, often with Chandi havan.',significance:['Traditionally performed for strength, protection and courage.','Central to the Navratri worship of the Goddess.','Often accompanied by Chandi havan as a dedicated ritual.'],benefits:['Traditionally sought for strength and protection','Performed for courage in adversity','Offered for the family’s safety','Associated with the removal of negativity'],whenTo:'Navratri, and Ashtami / Navami, are the most auspicious times.'},
+    navagraha:{deity:'The Nine Grahas',duration:'2–3 hours',about:'Navagraha Shanti is a set of rituals associated in tradition with the nine planetary influences (grahas), performed with each graha’s mantras and offerings to seek balance and shanti.',significance:['Described in tradition as seeking harmony with planetary influences.','Often advised in traditional astrology for graha doshas.','Performed with the mantras, colours and offerings of each graha.'],benefits:['Traditionally performed seeking balance and peace','Associated in tradition with relief from graha doshas','Offered for steadiness through difficult periods','Sought for overall well-being'],whenTo:'As advised in tradition; Saturdays are common for Shani-related rituals.',note:'Described as a traditional and astrological belief practice — never a guaranteed remedy.'},
+    ganeshpuja:{deity:'Lord Ganesha',duration:'1–2 hours',about:'Ganesh Puja invokes Lord Ganesha, the remover of obstacles and lord of auspicious beginnings, offered first before any important undertaking, home, shop or venture.',significance:['Traditionally performed first, for an obstacle-free start.','Central to Ganesh Chaturthi and Sankashti observances.','Offered before new homes, shops, ventures and studies.'],benefits:['Traditionally sought for auspicious beginnings','Performed for success in new ventures','Offered for wisdom and focus','Associated with the removal of obstacles'],whenTo:'Ganesh Chaturthi, Sankashti Chaturthi, and before any new beginning.'}
+  };
+  var pujaImgKey={rudrabhishek:'p_rudrabhishek',mahamrityunjaya:'p_mahamrityunjaya',lakshmiganesh:'p_lakshmiganesh',satyanarayan:'p_satyanarayan',sundarkand:'p_sundarkand',grihapravesh:'p_grihapravesh',durga:'p_durga',navagraha:'p_navagraha',ganeshpuja:'p_ganeshpuja'};
+
+  function renderPuja(p){
+    var el=document.getElementById('pujaDetail'); if(!el) return;
+    var d=PDX[p.id]||{}; var img=IMG[pujaImgKey[p.id]]||IMG.hero;
+    var t1=p.from, t2=p.from+1000, t3=p.from+4600;
+    var tiers=[['Individual Sankalp','Performed in your name',t1,0],['Family Sankalp','Up to 5 family members',t2,1],['Dedicated Puja','Performed exclusively for you',t3,2]];
+    function pkgCard(tr){
+      var feats=FEATURES.map(function(f){var on=f[1][tr[3]]; return '<li class="'+(on?'yes':'no')+'">'+(on?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>')+'<span>'+f[0]+'</span></li>';}).join('');
+      return '<div class="pkg'+(tr[3]===1?' feat':'')+'">'+(tr[3]===1?'<span class="rec">Most chosen</span>':'')+'<h4>'+tr[0]+'</h4><div class="pk-for">'+tr[1]+'</div><div class="pk-price">'+money(tr[2])+(tr[3]===2?'+':'')+'</div><ul>'+feats+'</ul><button class="btn btn-maroon" data-open-puja="'+p.id+'" data-puja-name="'+esc(p.name)+'" data-from="'+tr[2]+'">Book Now</button></div>';
+    }
+    var significance=(d.significance||[p.purpose]).map(function(s){return '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 15.4 7.2 17.9l.9-5.4L4.2 8.7l5.4-.8z" stroke-linejoin="round"/></svg><span>'+s+'</span></li>';}).join('');
+    var benefits=(d.benefits||[]).map(function(s){return '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9"/></svg><span>'+s+'</span></li>';}).join('');
+    var proc=defProc(p.name).map(function(s){return '<li><b>'+s[0]+'</b><span>'+s[1]+'</span></li>';}).join('');
+    var inc=DEF_INC.map(function(s){return '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>'+s+'</span></li>';}).join('');
+    var promise=PROMISE.map(function(x){return '<div class="pi"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="'+x[2]+'"/></svg></span><span><b>'+x[0]+'</b><span>'+x[1]+'</span></span></div>';}).join('');
+    var faqs=defFaqs(p.name).map(function(q){return '<details><summary>'+q[0]+'</summary><p>'+q[1]+'</p></details>';}).join('');
+    var related=PUJAS.filter(function(x){return x.id!==p.id;}).slice(0,3).map(pujaCard).join('');
+    var noteHtml=d.note?'<div class="note-strip">'+d.note+'</div>':'';
+    el.innerHTML=''
+      +'<section class="detail-hero pd-hero"><img src="'+img+'" alt="'+esc(p.name)+'"><div class="sc"></div>'
+      +'<div class="wrap"><a class="crumb" href="pujas.html">← All pujas</a>'
+      +'<div class="rating"><span class="stars">★★★★★</span> Trusted by devotees</div>'
+      +'<div class="badge">'+esc(p.cat)+'</div><h1>'+esc(p.name)+'</h1><div class="meta">'+(d.deity||'')+(d.duration?(' · '+d.duration):'')+'</div>'
+      +'<div class="price"><b>'+money(p.from)+'</b><span>onward · at a temple, your home, or on your behalf</span></div>'
+      +'<div class="cta"><button class="btn btn-primary" data-open-puja="'+p.id+'" data-puja-name="'+esc(p.name)+'" data-from="'+p.from+'">Book This Puja</button><button class="btn btn-ghost" data-guide="">Talk to an expert</button></div></div></section>'
+      +'<section class="pd-body"><div class="wrap pd-grid"><div class="pd-main">'
+      +'<section><h2>Choose your package</h2><div class="pkg-grid">'+tiers.map(pkgCard).join('')+'</div></section>'
+      +'<section><h2>Our promise</h2><div class="promise-grid">'+promise+'</div></section>'
+      +'<section><h2>About '+esc(p.name)+'</h2><p>'+(d.about||p.purpose)+'</p><ul class="benefit-list">'+significance+'</ul></section>'
+      +'<section><h2>How the puja is performed</h2><ul class="proc-list">'+proc+'</ul></section>'
+      +(d.whenTo?'<section><h2>When to perform</h2><p>'+d.whenTo+'</p></section>':'')
+      +(benefits?'<section><h2>Traditionally performed for</h2><ul class="benefit-list">'+benefits+'</ul>'+noteHtml+'</section>':'')
+      +'<section><h2>What you receive</h2><ul class="inc-list">'+inc+'</ul></section>'
+      +'<section><h2>Frequently asked questions</h2><div class="faq">'+faqs+'</div></section>'
+      +'</div>'
+      +'<aside class="pd-side"><div class="book-card"><div class="bc-name">'+esc(p.name)+'</div><div class="bc-price">'+money(p.from)+' <small>onward</small></div>'
+      +'<div class="bc-meta"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2" stroke-linecap="round"/></svg>'+(d.duration||'As per ritual')+'</div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg>Verified priest &amp; video proof</div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 9h16v8a2 2 0 01-2 2H6a2 2 0 01-2-2z"/></svg>Prasad couriered to you</div></div>'
+      +'<button class="btn btn-primary" data-open-puja="'+p.id+'" data-puja-name="'+esc(p.name)+'" data-from="'+p.from+'">Book Now</button>'
+      +'<button class="btn btn-ghost" data-guide="" style="width:100%;margin-top:.6rem">Need guidance?</button>'
+      +'<div class="assure">Secure payment • Free cancellation before priest is assigned</div></div></aside>'
+      +'</div></section>'
+      +'<section style="background:var(--bg-2)"><div class="wrap"><div class="section-head"><h2>Related pujas</h2></div><div class="card-grid">'+related+'</div></div></section>';
+  }
+
+  /* ---- booking modal ---- */
+  var bookModal=document.getElementById('bookModal'), bookBody=document.getElementById('bookBody');
+  function openBooking(opts){
+    opts=opts||{};
+    var name=opts.name||'Puja', temple=opts.temple||'', from=opts.from||1101;
+    var PKG=[['Shared Sankalp','A shared group ritual',Math.max(501,from)],['Individual Sankalp','In your name alone',Math.max(1101,from+600)],['Family Sankalp','Up to 5 family members',Math.max(2101,from+1600)],['Dedicated Puja','Priest performs it exclusively',Math.max(5100,from+4600)]];
+    bookBody.innerHTML=''
+      +'<h2 id="bookTitle">Book '+esc(name)+'</h2>'
+      +'<p class="sub">'+(temple?('At <b>'+esc(temple)+'</b> — or '):'')+'choose how you’d like it performed. You’ll receive a video and prasad.</p>'
+      +'<div class="grp-label">How would you like it performed?</div>'
+      +'<div class="opts three" data-group="mode">'
+        +'<label class="opt sel"><input type="radio" name="mode" checked><span><span class="ot">At a temple</span><span class="op">Partner temple</span></span></label>'
+        +'<label class="opt"><input type="radio" name="mode"><span><span class="ot">At my home</span><span class="op">Priest visits</span></span></label>'
+        +'<label class="opt"><input type="radio" name="mode"><span><span class="ot">On my behalf</span><span class="op">You needn’t attend</span></span></label>'
+      +'</div>'
+      +'<div class="grp-label">Choose a package</div><div class="opts two" data-group="pkg">'
+        + PKG.map(function(p,i){return '<label class="opt'+(i===1?' sel':'')+'"><input type="radio" name="pkg"'+(i===1?' checked':'')+'><span><span class="ot">'+p[0]+'</span><span class="op">'+p[1]+'</span></span><span class="opr">'+money(p[2])+(i===3?'+':'')+'</span></label>';}).join('')
+      +'</div>'
+      +'<div class="grp-label">Your Sankalp</div>'
+      +'<div class="field"><label>Full name</label><input id="bkName" type="text" placeholder="Name the puja is offered for"></div>'
+      +'<div class="field"><label>Gotra</label><input id="bkGotra" type="text" placeholder="e.g. Kashyap"><label class="checkline"><input type="checkbox" id="bkNoGotra"> I don’t know my Gotra</label></div>'
+      +'<div class="field"><label>City</label><input id="bkCity" type="text" placeholder="Your city"></div>'
+      +'<div class="field"><label>Your prayer / intention <span style="color:var(--ink-faint);font-weight:400">(optional)</span></label><textarea id="bkPrayer" placeholder="In a few words…"></textarea></div>'
+      +'<div class="grp-label">Add to your booking</div>'
+      +'<label class="checkline"><input type="checkbox" checked> Prasad delivery to my address</label>'
+      +'<label class="checkline"><input type="checkbox"> Deep daan (lamp offering)</label>'
+      +'<label class="checkline"><input type="checkbox"> Brahmin bhojan seva</label>'
+      +'<button class="btn btn-maroon" id="bkProceed" style="width:100%;margin-top:1.3rem">Proceed to Sankalp &amp; Payment</button>'
+      +'<div class="foot-note">Secure payment • Video confirmation • Prasad tracking</div>';
+    openModal(bookModal);
+  }
+  bookBody.addEventListener('click',function(e){
+    var opt=e.target.closest('.opt');
+    if(opt){var grp=opt.parentNode; grp.querySelectorAll('.opt').forEach(function(o){o.classList.remove('sel')}); opt.classList.add('sel'); var r=opt.querySelector('input'); if(r) r.checked=true;}
+    if(e.target.id==='bkProceed'){
+      var name=(document.getElementById('bkName')||{}).value||'';
+      var pkg=bookBody.querySelector('[data-group="pkg"] .opt.sel .ot'); pkg=pkg?pkg.textContent:'Individual Sankalp';
+      var mode=bookBody.querySelector('[data-group="mode"] .opt.sel .ot'); mode=mode?mode.textContent:'At a temple';
+      var id='DV-PUJA-'+Math.floor(10000+Math.random()*89999);
+      var title=document.getElementById('bookTitle').textContent.replace('Book ','');
+      bookBody.innerHTML='<div class="success"><div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'
+        +'<h2 style="color:var(--ink)">Sankalp received</h2>'
+        +'<p class="sub">Your booking request is noted. Our team will confirm on WhatsApp and share your priest and schedule.</p>'
+        +'<div class="bkid">'+id+'</div>'
+        +'<div class="book-summary" style="text-align:left;margin-top:1rem"><b>'+esc(title)+'</b><br>'+esc(mode)+' · '+esc(pkg)+(name?(' · for '+esc(name)):'')+'</div>'
+        +'<p style="font-size:.86rem;color:var(--ink-faint)">This is a demo booking — no payment was taken.</p>'
+        +'<button class="btn btn-primary" data-close style="margin-top:.4rem">Done</button></div>';
+    }
+  });
+
+  /* ---- guidance modal ---- */
+  var guideModal=document.getElementById('guideModal');
+  var guideOrig=document.getElementById('guideBody').innerHTML;
+  function openModal(m){m.classList.add('open');document.body.style.overflow='hidden';}
+  function closeModal(m){m.classList.remove('open');document.body.style.overflow='';}
+  function openGuide(){document.getElementById('guideBody').innerHTML=guideOrig;openModal(guideModal);}
+
+  /* ---- prasad order modal (per-packet) ---- */
+  var prasadModal=document.getElementById('prasadModal'), prasadBody=document.getElementById('prasadBody');
+  function inr(n){return '₹'+Number(n).toLocaleString('en-IN');}
+  function prUnit(){return parseInt(prasadModal.dataset.price,10)||599;}
+  function prQtyVal(){var el=document.getElementById('prQty');var v=parseInt(el&&el.value,10);if(isNaN(v)||v<1)v=1;return v;}
+  function syncPrasad(){
+    var q=prQtyVal(), unit=prUnit(), total=q*unit;
+    var tot=document.getElementById('prTotal'); if(tot)tot.innerHTML='Total <b>'+inr(total)+'</b> <span>· '+q+' packet'+(q>1?'s':'')+' × '+inr(unit)+'</span>';
+    var pay=document.getElementById('prPay'); if(pay)pay.innerHTML='Proceed to Pay '+inr(total)+' <span style="opacity:.8;font-weight:500">· Razorpay</span>';
+    prasadBody.querySelectorAll('.amt-chip').forEach(function(c){c.classList.toggle('sel',parseInt(c.getAttribute('data-qty'),10)===q);});
+  }
+  function openPrasad(tid){
+    var t=byId[tid]; if(!t) return; var pr=prasadOf(tid);
+    var presets=[1,2,3,5];
+    prasadBody.innerHTML=''
+      +'<h2 id="prasadTitle">Prasad from '+esc(t.name)+'</h2>'
+      +'<p class="sub">'+esc(pr.name)+' — blessed prasad, packed and couriered to your home. Delivery within India is included.</p>'
+      +'<div class="grp-label">How many packets? <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--ink-faint)">('+inr(pr.price)+' per packet, delivery included)</span></div>'
+      +'<div class="amt-presets">'+presets.map(function(q,i){return '<span class="amt-chip'+(i===0?' sel':'')+'" data-qty="'+q+'">'+q+' packet'+(q>1?'s':'')+'</span>';}).join('')+'</div>'
+      +'<div class="amt-stepper"><button type="button" data-step="-1" aria-label="Fewer packets">−</button><span class="amt-in"><input id="prQty" type="number" inputmode="numeric" min="1" step="1" value="1"> <span style="font-size:.9rem;color:var(--ink-faint);font-family:\'Mukta\'">packet(s)</span></span><button type="button" data-step="1" aria-label="More packets">+</button></div>'
+      +'<div class="pr-total" id="prTotal"></div>'
+      +'<div class="grp-label">Delivery details</div>'
+      +'<div class="field"><label>Full name</label><input id="prName" type="text" placeholder="Recipient name" autocomplete="name"></div>'
+      +'<div class="opts two"><label class="field" style="margin:0"><span style="display:block;font-weight:600;font-size:.9rem;margin-bottom:.4rem">Phone</span><input id="prPhone" type="tel" placeholder="+91 98XXX XXXXX" autocomplete="tel"></label><label class="field" style="margin:0"><span style="display:block;font-weight:600;font-size:.9rem;margin-bottom:.4rem">Email</span><input id="prEmail" type="email" placeholder="you@email.com" autocomplete="email"></label></div>'
+      +'<div class="field"><label>Country</label><select id="prCountry"><option value="IN">India — delivery included</option><option value="INTL">Outside India</option></select></div>'
+      +'<div class="field"><label>Delivery address</label><textarea id="prAddr" placeholder="House / street / area"></textarea></div>'
+      +'<div class="opts three"><label class="field" style="margin:0"><span style="display:block;font-weight:600;font-size:.9rem;margin-bottom:.4rem">City</span><input id="prCity"></label><label class="field" style="margin:0"><span style="display:block;font-weight:600;font-size:.9rem;margin-bottom:.4rem">State</span><input id="prState"></label><label class="field" style="margin:0"><span style="display:block;font-weight:600;font-size:.9rem;margin-bottom:.4rem">Pincode</span><input id="prPin" inputmode="numeric"></label></div>'
+      +'<div class="intl-note" id="intlNote">International delivery is calculated separately. Pay the packet amount now — our team will confirm the shipping charge on WhatsApp before dispatch.</div>'
+      +'<button class="btn btn-maroon" id="prPay" style="width:100%;margin-top:1.2rem"></button>'
+      +'<div class="foot-note">Secure payment • Prasad tracking • India delivery included</div>';
+    prasadModal.dataset.temple=tid; prasadModal.dataset.price=pr.price;
+    openModal(prasadModal); syncPrasad();
+  }
+  prasadBody.addEventListener('click',function(e){
+    var chip=e.target.closest('.amt-chip'); if(chip){document.getElementById('prQty').value=chip.getAttribute('data-qty');syncPrasad();return;}
+    var st=e.target.closest('[data-step]'); if(st){var nv=prQtyVal()+parseInt(st.getAttribute('data-step'),10);if(nv<1)nv=1;document.getElementById('prQty').value=nv;syncPrasad();return;}
+    if(e.target.closest('#prPay')){
+      var q=prQtyVal(), unit=prUnit(), total=q*unit; var intl=(document.getElementById('prCountry')||{}).value==='INTL';
+      var nm=(document.getElementById('prName')||{}).value||''; var t=byId[prasadModal.dataset.temple]||{}; var pr=prasadOf(t.id);
+      var id='DV-PRSD-'+Math.floor(10000+Math.random()*89999);
+      prasadBody.innerHTML='<div class="success"><div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'
+        +'<h2 style="color:var(--ink)">Prasad order received</h2>'
+        +'<p class="sub">'+(intl?'We’ll confirm your international shipping charge on WhatsApp before dispatch.':'Your prasad will be packed and couriered to your address, with tracking.')+'</p>'
+        +'<div class="bkid">'+id+'</div>'
+        +'<div class="book-summary" style="text-align:left;margin-top:1rem"><b>'+esc(pr.name)+'</b><br>'+q+' packet'+(q>1?'s':'')+' × '+inr(unit)+' = '+inr(total)+(nm?(' · for '+esc(nm)):'')+(intl?' · International (shipping charged separately)':' · India delivery included')+'</div>'
+        +'<p style="font-size:.86rem;color:var(--ink-faint)">This is a demo order — no payment was taken.</p>'
+        +'<button class="btn btn-primary" data-close style="margin-top:.4rem">Done</button></div>';
+    }
+  });
+  prasadBody.addEventListener('input',function(e){if(e.target.id==='prQty')syncPrasad();});
+  prasadBody.addEventListener('change',function(e){if(e.target.id==='prCountry'){var note=document.getElementById('intlNote');if(note)note.classList.toggle('show',e.target.value==='INTL');}});
+
+  /* ---- click plumbing ---- */
+  document.addEventListener('click',function(e){
+    if(e.target.closest('[data-book]')){e.preventDefault();location.href='pujas.html';return;}
+    if(e.target.closest('[data-guide]')){e.preventDefault();openGuide();return;}
+    var pdd=e.target.closest('[data-prasad]');
+    if(pdd){e.preventDefault();openPrasad(pdd.getAttribute('data-prasad'));return;}
+    if(e.target.closest('#gSubmit')){
+      var n=(document.getElementById('gName').value||'').trim();
+      document.getElementById('guideBody').innerHTML='<div class="success"><div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h2 style="color:var(--ink)">Thank you'+(n?(', '+esc(n)):'')+'!</h2><p class="sub">Our team will call you shortly for a free consultation to help you find the right puja.</p><button class="btn btn-maroon" data-close>Close</button></div>';
+      return;
+    }
+    var pj=e.target.closest('[data-open-puja]');
+    if(pj){e.preventDefault();
+      var pid=pj.getAttribute('data-open-puja');
+      var nm=pj.getAttribute('data-puja-name'); var tp=pj.getAttribute('data-temple'); var fr=pj.getAttribute('data-from');
+      var p=pid&&pujaById[pid];
+      openBooking({name:nm||(p&&p.name)||'Puja', temple:tp||'', from:fr?parseInt(fr,10)||(p&&p.from)||1101:(p&&p.from)||1101});
+      return;
+    }
+    /* ---- Seva / donation ---- */
+    if(e.target.closest('[data-goseva-donate]')){e.preventDefault();var dp=document.getElementById('dpanel');if(dp)dp.scrollIntoView({behavior:'smooth',block:'center'});return;}
+    var da=e.target.closest('[data-donamt]');
+    if(da){e.preventDefault();donSetAmt(parseInt(da.getAttribute('data-donamt'),10));var dp2=document.getElementById('dpanel');if(dp2)dp2.scrollIntoView({behavior:'smooth',block:'center'});return;}
+    var fb=e.target.closest('#dfreq button');
+    if(fb){don.freq=fb.getAttribute('data-freq');document.querySelectorAll('#dfreq button').forEach(function(b){b.classList.toggle('on',b===fb);});donSync();return;}
+    var ab=e.target.closest('#damts .amt');
+    if(ab){donSetAmt(parseInt(ab.getAttribute('data-amt'),10));return;}
+    if(e.target.closest('#dPay')){e.preventDefault();donSubmit();return;}
+    if(e.target.closest('[data-don-reset]')){e.preventDefault();donReset();return;}
+    if(e.target.closest('[data-close]')){var m=e.target.closest('.modal'); if(m)closeModal(m);}
+  });
+  /* ---- Seva donation module ---- */
+  var don={freq:'once',amt:101};
+  var donateOrig=(document.getElementById('donateBody')||{}).innerHTML||'';
+  function donFmt(n){return Number(n).toLocaleString('en-IN');}
+  function donSync(){var btn=document.getElementById('dPay');if(!btn)return;var per=don.freq==='monthly'?' / month':'';btn.textContent='Proceed to Donate ₹'+donFmt(don.amt)+per;}
+  function donSetAmt(v){if(!v||v<1)return;don.amt=v;var cust=document.getElementById('dCustom');var matched=false;document.querySelectorAll('#damts .amt').forEach(function(a){var on=parseInt(a.getAttribute('data-amt'),10)===v;a.classList.toggle('on',on);if(on)matched=true;});if(cust)cust.value=matched?'':v;donSync();}
+  function donSubmit(){var body=document.getElementById('donateBody');if(!body)return;var name=(document.getElementById('dName').value||'').trim();var amt=don.amt;var per=don.freq==='monthly'?' every month':'';var rid='DV-SEVA-'+Math.floor(10000+Math.random()*89999);body.innerHTML='<div class="success" style="text-align:center;padding:.4rem 0"><div class="tick" style="margin:0 auto 1rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 style="font-family:Fraunces,serif;color:var(--maroon);font-size:1.4rem;margin:.2rem 0 .5rem">Thank you'+(name?(', '+esc(name)):'')+' 🙏</h3><p style="color:var(--ink-soft);line-height:1.6;margin:0 0 1rem">Your seva of <b>₹'+donFmt(amt)+'</b>'+per+' brings this temple closer to standing. This is a preview — once Razorpay is live, this opens secure checkout and no money is charged in test mode.</p><div style="background:var(--niche);border:1px dashed var(--line);border-radius:12px;padding:.9rem 1rem;margin:0 0 1rem"><div style="font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint)">Seva receipt no.</div><div style="font-family:Marcellus,serif;font-size:1.15rem;color:var(--ink)">'+rid+'</div></div><p style="font-size:.85rem;color:var(--ink-faint);margin:0 0 1.1rem">Your name will be added to the temple\'s Wall of Seva. An 80G receipt will reach your email.</p><button class="btn btn-ghost" data-don-reset>Make another contribution</button></div>';}
+  function donReset(){var body=document.getElementById('donateBody');if(!body)return;don={freq:'once',amt:101};body.innerHTML=donateOrig;donSync();}
+  document.addEventListener('input',function(e){if(e.target&&e.target.id==='dCustom'){var v=parseInt(e.target.value,10);if(v>0){don.amt=v;document.querySelectorAll('#damts .amt').forEach(function(a){a.classList.remove('on');});donSync();}}});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){[bookModal,guideModal,prasadModal].forEach(function(m){if(m.classList.contains('open'))closeModal(m);});}});
+  document.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){var el=document.activeElement;if(el&&el.getAttribute&&el.getAttribute('data-prasad')){e.preventDefault();el.click();}}});
+  document.getElementById('fabGuide').addEventListener('click',openGuide);
+  // auto-open guidance once, after a delay
+  var guideShown=false;
+  setTimeout(function(){ if(!guideShown && !bookModal.classList.contains('open') && !guideModal.classList.contains('open') && !prasadModal.classList.contains('open')){guideShown=true;openGuide();} }, 18000);
+
+  /* ---- mobile menu ---- */
+  var header=document.querySelector('header'), menuBtn=document.getElementById('menuBtn');
+  function closeMenu(){header.classList.remove('nav-open');if(menuBtn)menuBtn.setAttribute('aria-expanded','false');}
+  if(menuBtn){menuBtn.addEventListener('click',function(){var open=header.classList.toggle('nav-open');menuBtn.setAttribute('aria-expanded',open?'true':'false');});}
+  document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',closeMenu);});
+
+  /* ---- reveal ---- */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -6% 0px'});
+  function observe(scope){(scope||document).querySelectorAll('.reveal:not(.in)').forEach(function(el){io.observe(el);});}
+
+  /* ---- router ---- */
+  var pages=[].slice.call(document.querySelectorAll('.page'));
+  var navlinks=[].slice.call(document.querySelectorAll('.nav-links a[data-route]'));
+  function showPage(id){pages.forEach(function(p){p.hidden=(p.id!==id);});}
+  function setActive(seg){navlinks.forEach(function(a){a.classList.toggle('active', a.getAttribute('data-route')==='/'+seg);});}
+  function route(){
+    var h=(location.hash||'').replace(/^#/,'');
+    var target='page-home', seg='';
+    if(!h||h==='/'||h==='/home'){target='page-home';}
+    else{
+      var parts=h.split('/').filter(Boolean); seg=parts[0];
+      if(seg==='temple'&&parts[1]&&byId[parts[1]]){renderDetail(byId[parts[1]]);target='page-temple';seg='temples';}
+      else if(seg==='puja'&&parts[1]&&pujaById[parts[1]]){renderPuja(pujaById[parts[1]]);target='page-puja';seg='pujas';}
+      else{var map={temples:'page-temples',pujas:'page-pujas',offer:'page-offer',prasad:'page-prasad',watch:'page-watch',seva:'page-seva',promise:'page-promise'};target=map[seg]||'page-home';if(!map[seg])seg='';}
+    }
+    showPage(target); setActive(seg);
+    var pv=document.getElementById(target); if(pv) pv.querySelectorAll('.reveal:not(.in)').forEach(function(el){el.classList.add('in');});
+    closeMenu(); window.scrollTo(0,0);
+  }
+
+  render();
+  renderPuja(pujaById['ganeshpuja']);
+  (function(){var t='page-puja';document.querySelectorAll('.page').forEach(function(p){p.hidden=(p.id!==t);});var v=document.getElementById(t);if(v)v.querySelectorAll('.reveal').forEach(function(e){e.classList.add('in');});
+  var a=document.querySelector('.nav-links a[href="pujas.html"]');if(a)a.classList.add('active');
+  })();
+})();
+</script>
